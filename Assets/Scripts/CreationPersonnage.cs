@@ -12,10 +12,22 @@ public class CreationPersonnage : MonoBehaviour {
         listePerkComplete = new Dictionary<int, Perk>();
         listePerkComplete.Add(1, new Perk1(1));
         listePerkComplete.Add(2, new Perk2(2));
+        listePerkComplete.Add(3, new Perk1(1));
+        listePerkComplete.Add(4, new Perk2(2));
+        listePerkComplete.Add(5, new Perk1(1));
+        listePerkComplete.Add(6, new Perk2(2));
+        listePerkComplete.Add(7, new Perk1(1));
+        listePerkComplete.Add(8, new Perk2(2));
+        listePerkComplete.Add(9, new Perk1(1));
+        listePerkComplete.Add(10, new Perk2(2));
+        listePerkComplete.Add(11, new Perk1(1));
+        listePerkComplete.Add(12, new Perk2(2));
         perso =(GameObject) Instantiate(Resources.Load("Personnage"));
         personnage = perso.GetComponentInChildren<Personnage>();
         afficherPerks(listePerkComplete);
     }
+    public GameObject buttonHolder;
+    public Scrollbar scrollbar;
     private Personnage personnage;
     private Dictionary<int, Perk> listePerkPerso;
     private  Dictionary<int, Perk> listePerkComplete;
@@ -28,14 +40,19 @@ public class CreationPersonnage : MonoBehaviour {
         int nbToggle = 0;
         foreach(Perk perk in listePerk.Values)
         {
-            GameObject tog = Instantiate(toggle,transform);
+            GameObject tog = Instantiate(toggle,buttonHolder.transform.parent);
             tog.transform.localPosition = new Vector2(0,nbToggle*-30);
             tog.GetComponentInChildren<PerkToggle>().perkId = perk.id;
             tog.GetComponentInChildren<Text>().text =perk.nom;
             nbToggle++;
         }
+        scrollbar.size=Mathf.Clamp(0, 1, 1 - (listePerk.Count - 6) * 0.1f);
+
     }
-    
+    public void SlidePerks(float value)
+    {
+        scrollbar.transform.localPosition = new Vector2(0,-value*30);
+    }
     public void AddPerk(int id)
     {
         if (!listePerkPerso.ContainsKey(id))

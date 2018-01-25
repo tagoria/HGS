@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/CreationPersonnage.unity
     guid: fb896609f43c84b4a873355727ffc911
   - enabled: 1
+  - enabled: 1
     path: Assets/Scenes/EcranPrincipal.unity
     guid: b1f37b1fb972b5341b90f3e59802d2b1
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: 500596f1d2ab3ff44a5bb9974a075611
-  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
