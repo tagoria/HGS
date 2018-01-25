@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum NumeroScene: int{
-    GameOver=0,
-    EcranPrincipal=1,
-    CreationPerso=2
+    GameOver=1,
+    EcranPrincipal=2,
+    CreationPerso=0
 };

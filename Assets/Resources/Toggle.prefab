@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 224144726290994574}
   - component: {fileID: 114614788029297728}
   - component: {fileID: 114978606958929888}
+  - component: {fileID: 222798625779705508}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -254,6 +255,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1227187819587870}
+--- !u!222 &222798625779705508
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1632571111292614}
 --- !u!224 &224037983045792172
 RectTransform:
   m_ObjectHideFlags: 1

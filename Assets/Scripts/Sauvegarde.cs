@@ -60,7 +60,7 @@ public class Sauvegarde : MonoBehaviour
         else
         {
             evenementPasse = new Dictionary<int, Evenement>();
-            evenementPasse.Add(0, new Evenement(1f, new ConditionSup(49f, TRAVAIL)));
+            //evenementPasse.Add(0, new Evenement(1f, new ConditionSup(49f, TRAVAIL)));
         }
     }
     private void OnApplicationQuit()

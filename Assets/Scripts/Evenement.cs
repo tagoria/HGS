@@ -7,8 +7,8 @@ public class Evenement  {
     private int id;
 	private static int nbEvenement=2;
     public float proba;
-    public Conditions conditions;
-	public Evenement(float proba,Conditions conditions)
+    public String conditions;
+	public Evenement(float proba,String conditions)
     {
         id = nbEvenement;
         nbEvenement++;
