@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 
 public class Botin : MonoBehaviour
@@ -13,8 +12,8 @@ public class Botin : MonoBehaviour
     private GenerationEvenement generationEvenement;
     private void Start()
     {
-        List<Evenement.Condition> condtions = new List<Evenement.Condition>();
-        condtions.Add(new ConditionDerniereActionTravailler(FindObjectOfType<Action1>()));
+        List<Evenement.Condition> conditions = new List<Evenement.Condition>();
+        conditions.Add(new ConditionDerniereAction(FindObjectOfType<Action1>()));
         caseActuelle = 0;
         cases = new List<List<Evenement>>();
         for (int i = 0; i < 12; i++)
@@ -22,11 +21,11 @@ public class Botin : MonoBehaviour
             List<Evenement> liste = new List<Evenement>();
             if (i < 4)
             {
-                liste.Add(new Evenement2(condtions));
+                liste.Add(new Evenement2(conditions));
             }
             else
             {
-                liste.Add(new Evenement1(condtions));
+                liste.Add(new Evenement1(conditions));
             }
             cases.Add(liste);
         }
@@ -41,11 +40,11 @@ public class Botin : MonoBehaviour
     {
         caseActuelle = horloge.getCreneauActuel();
         double sommeProba = 0;
-        foreach (Evenement evenemnt in cases[caseActuelle])
+        foreach (Evenement evenement in cases[caseActuelle])
         {
-            if (evenemnt.isRealisable())
+            if (evenement.isRealisable())
             {
-                sommeProba += evenemnt.getProba();
+                sommeProba += evenement.getProba();
             }
         }
         float rand = Random.Range(0,10);

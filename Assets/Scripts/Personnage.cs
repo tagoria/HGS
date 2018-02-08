@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Personnage : MonoBehaviour {
     private void Awake()
     {
         main = this;
-        afficheNom = GetComponentInChildren<TextMesh>();
+        afficheNom = GetComponentInChildren<Text>();
     }
     // Use this for initialization
     void Start () {
@@ -51,7 +52,7 @@ public class Personnage : MonoBehaviour {
         travailActuel = travailDep;
         remplirBarre();
     }
-    private TextMesh afficheNom;
+    private Text afficheNom;
     public Barre barreEnergie;
     public Barre barreTravail;
     public Barre barresocial;

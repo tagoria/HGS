@@ -17,16 +17,6 @@ public class ButtonHolder : MonoBehaviour {
         initActions = new List<Action>();
         initActions.Add(gameObject.AddComponent<Action1>());
         initActions.Add(gameObject.AddComponent<Action2>());
-        initActions.Add(gameObject.AddComponent<Action1>());
-        initActions.Add(gameObject.AddComponent<Action1>());
-        initActions.Add(gameObject.AddComponent<Action2>());
-        initActions.Add(gameObject.AddComponent<Action1>());
-        initActions.Add(gameObject.AddComponent<Action1>());
-        initActions.Add(gameObject.AddComponent<Action2>());
-        initActions.Add(gameObject.AddComponent<Action1>());
-        initActions.Add(gameObject.AddComponent<Action1>());
-        initActions.Add(gameObject.AddComponent<Action2>());
-        initActions.Add(gameObject.AddComponent<Action1>());
         UpdateActions(initActions);
     }
     private void UpdateActions(List<Action> list)
@@ -46,7 +36,7 @@ public class ButtonHolder : MonoBehaviour {
             GameObject o = Instantiate(button,transform);
             o.transform.localPosition = new Vector2(0,hauteur);
             o.GetComponent<RectTransform>().sizeDelta = new Vector2(320, 40);
-            hauteur -= 60;
+            hauteur -= 160;
             Button b =o.GetComponent<Button>();
             b.onClick.AddListener(action.Act);
             b.GetComponentInChildren<Text>().text = action.GetNom();

@@ -22,8 +22,6 @@ public class CreationPersonnage : MonoBehaviour {
         listePerkComplete.Add(10, new Perk2(2));
         listePerkComplete.Add(11, new Perk1(1));
         listePerkComplete.Add(12, new Perk2(2));
-        perso =(GameObject) Instantiate(Resources.Load("Personnage"));
-        personnage = perso.GetComponentInChildren<Personnage>();
         afficherPerks(listePerkComplete);
     }
     public GameObject buttonHolder;
@@ -34,7 +32,17 @@ public class CreationPersonnage : MonoBehaviour {
     private  GameObject perso;
     private string nom;
     public GameObject toggle;
-	
+    private void Update()
+    {
+        if (Component.FindObjectOfType<Personnage>() != null)
+        {
+            personnage = Component.FindObjectOfType<Personnage>();
+            DontDestroyOnLoad(personnage.gameObject);
+            personnage.setPerks(listePerkPerso);
+            personnage.SetNom(nom);
+            Destroy(this.gameObject);
+        }
+    }
     private void afficherPerks(Dictionary<int,Perk> listePerk)
     {
         int nbToggle = 0;
@@ -67,13 +75,12 @@ public class CreationPersonnage : MonoBehaviour {
     }
     public  void CreatePersonnage()
     {
-        personnage.setPerks(listePerkPerso);
-        DontDestroyOnLoad(perso);
+        DontDestroyOnLoad(this);
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)NumeroScene.EcranPrincipal,UnityEngine.SceneManagement.LoadSceneMode.Single);
         
     }
     public  void SetName()
     {
-        personnage.SetNom( GameObject.FindGameObjectWithTag("inputFieldPlayerName").GetComponentInChildren<InputField>().text);
+        nom=GameObject.FindGameObjectWithTag("inputFieldPlayerName").GetComponentInChildren<InputField>().text;
     }
 }

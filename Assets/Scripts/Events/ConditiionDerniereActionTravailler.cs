@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
-public class ConditionDerniereActionTravailler : Evenement.Condition
+public class ConditionDerniereAction : Evenement.Condition
 {
     private Action action;
 
-    public ConditionDerniereActionTravailler(Action action)
+    public ConditionDerniereAction(Action action)
     {
         this.action = action;
     }
