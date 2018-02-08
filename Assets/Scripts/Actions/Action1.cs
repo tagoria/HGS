@@ -12,5 +12,6 @@ public class Action1 : Action
     {
         Personnage.main.augmenterTravailActuel(10);
         Personnage.main.diminuerEnergieActuelle(10);
+        base.Act();
     }
 }

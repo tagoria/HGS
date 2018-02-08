@@ -11,7 +11,7 @@ public class ButtonHolder : MonoBehaviour {
     public GameObject scrollbarAction;
     private Scrollbar scrollbar;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         scrollbar = scrollbarAction.GetComponent<Scrollbar>();
         depPosition = transform.position;
         initActions = new List<Action>();

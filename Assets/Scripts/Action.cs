@@ -4,7 +4,17 @@ using UnityEngine;
 
 public abstract class Action : MonoBehaviour  {
 
-    public abstract void Act();
+    private void Start()
+    {
+        horloge = FindObjectOfType<Horloge>();
+    }
+    private Horloge horloge;
+    public virtual void Act()
+    {
+        horloge.setDerniereActionRealisee(this);
+        horloge.avancerDunCreneau();
+        
+    }
     protected string nom;
     public string GetNom()
     {
