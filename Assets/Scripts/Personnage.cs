@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +7,8 @@ using UnityEngine.UI;
 public class Personnage : MonoBehaviour {
     private void Awake()
     {
+        listeStatus = new List<StatusAbstract>();
         main = this;
-        afficheNom = GetComponentInChildren<Text>();
     }
     // Use this for initialization
     void Start () {
@@ -24,6 +25,13 @@ public class Personnage : MonoBehaviour {
         socialActuelle = socialDep;
         travailActuel = travailDep;
         remplirBarre();
+    }
+    public void ajouterStatus(StatusAbstract status)
+    {
+        status.onStart();
+        listeStatus.Add(status);
+        StatusHolder.instance.afficherStatus(listeStatus);
+
     }
     public void remplirBarre()
     {
@@ -52,10 +60,32 @@ public class Personnage : MonoBehaviour {
         travailActuel = travailDep;
         remplirBarre();
     }
-    private Text afficheNom;
+    private List<StatusAbstract> listeStatus;
     public Barre barreEnergie;
     public Barre barreTravail;
     public Barre barresocial;
+
+    internal void affecterStatus(int nbCréneaux)
+    {
+        if (listeStatus == null || listeStatus.Count == 0)
+        {
+            return;
+        }
+        for (int i = 0; i < nbCréneaux; i++)
+        {
+            foreach (StatusAbstract status in listeStatus.ToArray())
+            {
+                status.onTimePass();
+            }
+        }
+        StatusHolder.instance.afficherStatus(listeStatus);
+    }
+    public void removeStatus(StatusAbstract status)
+    {
+        listeStatus.Remove(status);
+        StatusHolder.instance.afficherStatus(listeStatus);
+    }
+
     internal static Personnage main;
     public float maxEnergieBase;
     public float maxTravailBase;
@@ -73,6 +103,8 @@ public class Personnage : MonoBehaviour {
     private float socialActuelle;
     private float travailActuel;
     private string nom;
+    //Représente le fait que le personnage est occupé où non ,influe sur les évènements en faisant raté des RDV par exemple
+    public bool occuppe = false;
     
     internal  Dictionary<int,Perk> listePerk;
 	// Update is called once per frame
@@ -170,7 +202,6 @@ public class Personnage : MonoBehaviour {
     public void SetNom(string nom)
     {
         this.nom = nom;
-        afficheNom.text = "Bonjour "+nom;
     }
 }
 

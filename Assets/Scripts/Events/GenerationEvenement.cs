@@ -39,8 +39,12 @@ public class GenerationEvenement : MonoBehaviour {
         buttons = fenetre.GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(realiserChoix1);
         buttons[0].GetComponentInChildren<Text>().text = evenement.getChoix1();
-        buttons[1].onClick.AddListener(realiserChoix2);
-        buttons[1].GetComponentInChildren<Text>().text = evenement.getChoix2();
+        if (evenement.GetType() == typeof(EvenementDeuxChoix))
+        {
+            EvenementDeuxChoix evnmt = (EvenementDeuxChoix)evenement;
+            buttons[1].onClick.AddListener(realiserChoix2);
+            buttons[1].GetComponentInChildren<Text>().text = evnmt.getChoix2();
+        }
         corpsTexte.text = evenement.getTexte();
         titre.text = evenement.getTitre();
     }
@@ -70,12 +74,25 @@ public class GenerationEvenement : MonoBehaviour {
     private  GameObject fenetre;
     public void realiserChoix1()
     {
-        afficherResultat(evenement.getTexteSiChoix1());
+        if (evenement.GetType() == typeof(EvenementDeuxChoix))
+        {
+            EvenementDeuxChoix evnmt = (EvenementDeuxChoix) evenement;
+            afficherResultat(evnmt.getTexteSiChoix1());
+
+        }
+        else
+        {
+            supprimerEvenement();
+        }
         evenement.realiserChoix1();
     }
     public void realiserChoix2()
     {
-        afficherResultat(evenement.getTexteSiCHoix2());
-        evenement.realiserChoix2();
+        if (evenement.GetType() == typeof(EvenementDeuxChoix))
+        {
+            EvenementDeuxChoix evnmt =(EvenementDeuxChoix) evenement;
+            afficherResultat(evnmt.getTexteSiCHoix2());
+            evnmt.realiserChoix2();
+        }
     }
 }

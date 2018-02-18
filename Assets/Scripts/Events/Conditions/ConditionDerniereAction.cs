@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ConditionDerniereAction : Evenement.Condition
 {
-    private Action action;
+    private Type action;
 
-    public ConditionDerniereAction(Action action)
+    public ConditionDerniereAction(Type action)
     {
         this.action = action;
     }
@@ -16,6 +17,6 @@ public class ConditionDerniereAction : Evenement.Condition
         {
             Debug.Log(horloge.getDerniereActionRealisee().GetNom());
         }
-        return (horloge.getDerniereActionRealisee()!=null&& horloge.getDerniereActionRealisee().GetNom().Equals(action.GetNom())) ;
+        return (horloge.getDerniereActionRealisee()!=null&& horloge.getDerniereActionRealisee().GetType().Equals(action)) ;
     }
 }

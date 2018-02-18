@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-public class EvenementCours : Evenement
+public class EvenementCours : EvenementDeuxChoix
 {
     public EvenementCours( List<Condition> conditions) : base(3, 5, conditions, "oui", "non", "Cours", "aller en cours?", "Vous allez en cours", "Vous allez pas en cours")
     {
@@ -15,6 +15,6 @@ public class EvenementCours : Evenement
 
     public override void realiserChoix2()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

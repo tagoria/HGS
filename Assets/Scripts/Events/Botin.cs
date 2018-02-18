@@ -6,26 +6,30 @@ public class Botin : MonoBehaviour
     private List<List<Evenement>> cases;
     private void Awake()
     {
-        
+        instance= this;
     }
     private Horloge horloge;
     private GenerationEvenement generationEvenement;
+    public static Botin instance;
+    public bool ferie=false;
     private void Start()
     {
-        List<Evenement.Condition> conditions = new List<Evenement.Condition>();
-        conditions.Add(new ConditionDerniereAction(FindObjectOfType<Action1>()));
         caseActuelle = 0;
         cases = new List<List<Evenement>>();
         for (int i = 0; i < 12; i++)
         {
             List<Evenement> liste = new List<Evenement>();
+            if (i == 5)
+            {
+                liste.Add(new EvenementJourFerie());
+            }
             if (i < 4)
             {
-                liste.Add(new Evenement2(conditions));
+                liste.Add(new EvenementEpuisement());
             }
             else
             {
-                liste.Add(new Evenement1(conditions));
+                liste.Add(new EvenementCanette());
             }
             cases.Add(liste);
         }
@@ -39,30 +43,18 @@ public class Botin : MonoBehaviour
     public void changerDeCreneau()
     {
         caseActuelle = horloge.getCreneauActuel();
-        double sommeProba = 0;
-        foreach (Evenement evenement in cases[caseActuelle])
-        {
-            if (evenement.isRealisable())
-            {
-                sommeProba += evenement.getProba();
-            }
-        }
-        float rand = Random.Range(0,10);
-        if (rand < sommeProba )
-        {
-            sommeProba=0;
+        cases[caseActuelle].Sort();
+        float rand = Random.Range(0,100);
             foreach (Evenement evenement in cases[caseActuelle])
             {
                 if (evenement.isRealisable())
                 {
-                    sommeProba += evenement.getProba();
-                    if (sommeProba > rand)
+                    if (evenement.getProba() >= rand)
                     {
                         generationEvenement.afficher(evenement);
                         break;
                     }
                 }
             }
-        }
     }
 }

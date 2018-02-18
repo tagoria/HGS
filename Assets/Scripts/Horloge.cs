@@ -6,8 +6,13 @@ public class Horloge : MonoBehaviour {
     private int creneauActuel;
     private Text texteHorloge;
     private Botin botin;
-	// Use this for initialization
-	void Start () {
+    public static Horloge instance;
+    // Use this for initialization
+    private void Awake()
+    {
+        instance = this;
+    }
+    void Start () {
         botin = FindObjectOfType<Botin>();
         texteHorloge = GetComponent<Text>();
 	}
@@ -31,14 +36,23 @@ public class Horloge : MonoBehaviour {
     /**
      * fixe l'heure actuelle sans passer par avancerDunCreneau()
      * représente une période de temps pendant laquelle le joueur ne peut pas agir , n'a pas agi
-     * et pendant laquelle aucun événement ne va se produire
+     * et pendant laquelle certain événement vont se produire avec une résolution automatique
+     * (exemple cours raté parce que on dort)
      * en opposition a avancerDunCreneau()
      * */
 
     public void setCreneauActuel(int creneauActuel)
     {
-        this.creneauActuel = creneauActuel;
-        texteHorloge.text = creneauActuel * 2 + ":00";
+        Personnage.main.occuppe = true;
+        int iterations = creneauActuel - this.creneauActuel;
+        if (iterations < 0)
+        {
+            iterations += 12;
+        }
+        for (int i = 0; i < iterations; i++)
+        {
+            avancerDunCreneau();
+        }
     }
     /**
      * représente un déplacement dans le temps de 2 heures normal pendant lequel des événements peuvent se produire
@@ -47,9 +61,10 @@ public class Horloge : MonoBehaviour {
      * */
     public void avancerDunCreneau()
     {
-        botin.changerDeCreneau();
         creneauActuel++;
         creneauActuel = creneauActuel%12;
         texteHorloge.text = creneauActuel * 2 + ":00";
+        Personnage.main.affecterStatus(1);
+        botin.changerDeCreneau();
     }
 }
