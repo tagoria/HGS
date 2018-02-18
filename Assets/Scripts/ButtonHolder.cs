@@ -35,8 +35,7 @@ public class ButtonHolder : MonoBehaviour {
         {
             GameObject o = Instantiate(button,transform);
             o.transform.localPosition = new Vector2(0,hauteur);
-            o.GetComponent<RectTransform>().sizeDelta = new Vector2(320, 40);
-            hauteur -= 160;
+            hauteur -= 300;
             Button b =o.GetComponent<Button>();
             b.onClick.AddListener(action.Act);
             b.GetComponentInChildren<Text>().text = action.GetNom();

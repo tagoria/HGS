@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +23,7 @@ public class GenerationEvenement : MonoBehaviour {
     public void afficher(Evenement evenement)
     {
         this.evenement = evenement;
-        fenetre = Instantiate(fenetreTemplate,transform);
+        fenetre = Instantiate(fenetreTemplate,transform.parent);
         Text[] textes = fenetre.GetComponentsInChildren<Text>();
         foreach(Text text in textes)
         {
