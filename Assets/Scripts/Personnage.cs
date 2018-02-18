@@ -21,7 +21,7 @@ public class Personnage : MonoBehaviour {
     public void recommencer()
     {
         energieActuelle = energieDep;
-        socialActuelle = socialDep;
+        socialActuel = socialDep;
         travailActuel = travailDep;
         remplirBarre();
     }
@@ -31,7 +31,7 @@ public class Personnage : MonoBehaviour {
         barresocial.valeurCap = maxsocialPerso;
         barreTravail.valeurCap = maxTravailPerso;
         barreEnergie.setValeur(energieActuelle);
-        barresocial.setValeur(socialActuelle);
+        barresocial.setValeur(socialActuel);
         barreTravail.setValeur(travailActuel);
     }
     private void appliquerPerks()
@@ -48,7 +48,7 @@ public class Personnage : MonoBehaviour {
             perk.appliquer();
         }
         energieActuelle = energieDep;
-        socialActuelle = socialDep;
+        socialActuel = socialDep;
         travailActuel = travailDep;
         remplirBarre();
     }
@@ -70,7 +70,7 @@ public class Personnage : MonoBehaviour {
     internal float travailDep;
     internal float socialDep;
     private float energieActuelle;
-    private float socialActuelle;
+    private float socialActuel;
     private float travailActuel;
     private string nom;
     
@@ -83,9 +83,9 @@ public class Personnage : MonoBehaviour {
     {
         return energieActuelle;
     }
-    public float getsocialActuelle()
+    public float getSocialActuel()
     {
-        return socialActuelle;
+        return socialActuel;
     }
     public float getTravailActuel()
     {
@@ -103,17 +103,17 @@ public class Personnage : MonoBehaviour {
         }
         barreEnergie.setValeur(energieActuelle);
     }
-    public void augmentersocialActuelle(float f)
+    public void augmenterSocialActuel(float f)
     {
-        if (socialActuelle + f > maxsocialPerso)
+        if (socialActuel + f > maxsocialPerso)
         {
-            socialActuelle = maxsocialPerso;
+            socialActuel = maxsocialPerso;
         }
         else
         {
-            socialActuelle += f;
+            socialActuel += f;
         }
-        barresocial.setValeur(socialActuelle);
+        barresocial.setValeur(socialActuel);
     }
     public void augmenterTravailActuel(float f)
     {
@@ -139,17 +139,17 @@ public class Personnage : MonoBehaviour {
         }
         barreEnergie.setValeur(energieActuelle);
     }
-    public void diminuersocialActuelle(float f)
+    public void diminuerSocialActuel(float f)
     {
-        if (socialActuelle - f <=0)
+        if (socialActuel - f <=0)
         {
             GameOver();
         }
         else
         {
-            socialActuelle -= f;
+            socialActuel -= f;
         }
-        barresocial.setValeur(socialActuelle);
+        barresocial.setValeur(socialActuel);
     }
     public void diminuerTravailActuel(float f)
     {

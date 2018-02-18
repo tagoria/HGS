@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Evenement2 : Evenement
 {
+    // id, proba, conditions, texteChoix1, texteChoix2, Titre, Description, DescriptionChoix1, Description Choix2
     public Evenement2(List<Condition> conditions) : base(2, 10, conditions, "zut", "flute", "Epuisé", "Vous tombez de fatigue", "Vous vous réveillez en sursaut à 10 heures", "Vous vous réveillez en sursaut à 10 heures")
     {
     }
