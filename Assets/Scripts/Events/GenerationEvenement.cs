@@ -7,20 +7,17 @@ using UnityEngine.UI;
 
 public class GenerationEvenement : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private  Button[] buttons;
-    private  Evenement evenement;
+    private  EvenementAbstract evenement;
     private  Text corpsTexte;
     private Text titre;
-    public void afficher(Evenement evenement)
+    public static GenerationEvenement instance;
+    public void afficher(EvenementAbstract evenement)
     {
         this.evenement = evenement;
         fenetre = Instantiate(fenetreTemplate,transform.parent);
@@ -34,14 +31,30 @@ public class GenerationEvenement : MonoBehaviour {
                 titre = text;
             }
         }
+        if (evenement.GetType().GetInterface("EvenementEffetSiOccuppe") != null &&Personnage.main.occuppe)
+        {
+            EvenementEffetSiOccuppe evnmt = (EvenementEffetSiOccuppe)evenement;
+            evnmt.onOccuppe();
+            corpsTexte.text = "Vous ratez l'événement " + evenement.getTitre() + " car vous êtes occuppé";
+            titre.text = evenement.getTitre()+" raté";
+            buttons = fenetre.GetComponentsInChildren<Button>();
+            buttons[0].onClick.AddListener(supprimerEvenement);
+            buttons[0].GetComponentInChildren<Text>().text = "Ok";
+            Destroy(buttons[1].gameObject);
+            return;
+        }
         buttons = fenetre.GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(realiserChoix1);
         buttons[0].GetComponentInChildren<Text>().text = evenement.getChoix1();
-        if (evenement.GetType() == typeof(EvenementDeuxChoix))
+        if (evenement.isEvenmentDeuxChoix())
         {
             EvenementDeuxChoix evnmt = (EvenementDeuxChoix)evenement;
             buttons[1].onClick.AddListener(realiserChoix2);
             buttons[1].GetComponentInChildren<Text>().text = evnmt.getChoix2();
+        }
+        else
+        {
+            Destroy(buttons[1].gameObject);
         }
         corpsTexte.text = evenement.getTexte();
         titre.text = evenement.getTitre();
@@ -72,7 +85,8 @@ public class GenerationEvenement : MonoBehaviour {
     private  GameObject fenetre;
     public void realiserChoix1()
     {
-        if (evenement.GetType() == typeof(EvenementDeuxChoix))
+        evenement.realiserChoix1();
+        if (evenement.isEvenmentDeuxChoix())
         {
             EvenementDeuxChoix evnmt = (EvenementDeuxChoix) evenement;
             afficherResultat(evnmt.getTexteSiChoix1());
@@ -82,15 +96,15 @@ public class GenerationEvenement : MonoBehaviour {
         {
             supprimerEvenement();
         }
-        evenement.realiserChoix1();
     }
     public void realiserChoix2()
     {
-        if (evenement.GetType() == typeof(EvenementDeuxChoix))
+        if (evenement.isEvenmentDeuxChoix())
         {
             EvenementDeuxChoix evnmt =(EvenementDeuxChoix) evenement;
-            afficherResultat(evnmt.getTexteSiCHoix2());
             evnmt.realiserChoix2();
+            afficherResultat(evnmt.getTexteSiCHoix2());
+            
         }
     }
 }

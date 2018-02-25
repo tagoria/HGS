@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ConditionDerniereAction : Evenement.Condition
+public class ConditionDerniereAction : EvenementAbstract.Condition
 {
     private Type action;
 
@@ -15,7 +15,6 @@ public class ConditionDerniereAction : Evenement.Condition
         Horloge horloge = Component.FindObjectOfType<Horloge>();
         if (horloge.getDerniereActionRealisee() != null)
         {
-            Debug.Log(horloge.getDerniereActionRealisee().GetNom());
         }
         return (horloge.getDerniereActionRealisee()!=null&& horloge.getDerniereActionRealisee().GetType().Equals(action)) ;
     }
