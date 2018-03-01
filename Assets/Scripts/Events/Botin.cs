@@ -1,62 +1,94 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Botin : MonoBehaviour
 {
-    private List<List<Evenement>> cases;
-    private void Awake()
-    {
-        
-    }
+    private List<List<EvenementAbstract>> cases;
     private Horloge horloge;
     private GenerationEvenement generationEvenement;
+    public static Botin instance;
+    public bool ferie = false;
+    private int caseActuelle;
+    private bool evenmentIsAboutToHappen;
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void ajouterUnEvenementSurToutSesCreneaux(EvenementAbstract evenement)
+    {
+        foreach (int creneau in evenement.getCreneaux())
+        {
+            ajouterEvenementSurUnCreneau(evenement, creneau);
+        }
+    }
     private void Start()
     {
-        List<Evenement.Condition> conditions = new List<Evenement.Condition>();
-        conditions.Add(new ConditionDerniereAction(FindObjectOfType<Action1>()));
         caseActuelle = 0;
-        cases = new List<List<Evenement>>();
+        cases = new List<List<EvenementAbstract>>();
         for (int i = 0; i < 12; i++)
         {
-            List<Evenement> liste = new List<Evenement>();
-            if (i < 4)
-            {
-                liste.Add(new Evenement2(conditions));
-            }
-            else
-            {
-                liste.Add(new Evenement1(conditions));
-            }
-            cases.Add(liste);
+            cases.Add(new List<EvenementAbstract>());
         }
-        horloge =FindObjectOfType<Horloge>();
+        List<EvenementAbstract> evenements = new List<EvenementAbstract>();
+        evenements.Add(new EvenementCanette());
+        evenements.Add(new EvenementCoursMatin());
+        evenements.Add(new EvenementEpuisement());
+        evenements.Add(new EvenementJourFerie());
+        evenements.Add(new GrippeEvenement());
+        evenements.Add(new EvenementCoursSoir());
+        evenements.Add(new OuvertureCulturelleEvenement());
+        evenements.Add(new ConferenceHeiEvenement());
+        evenements.Add(new ReunionDeProjetEvenement());
+        evenements.Add(new TpNotesEvenement());
+        evenements.Add(new CoursClarifeEvenement());
+        evenements.Add(new DejeunerAuRuEvenement());
+        evenements.Add(new ConferenceHeiEvenement());
+        evenements.Add(new EvenementSiesteRemplaceCours());
+        evenements.Add(new OuvertureCulturelleEvenement());
+        evenements.Add(new TpNotesEvenement());
+        evenements.Add(new ReunionDeProjetEvenement());
+        evenements.Add(new AbsenceBizarreEvenement());
+        foreach (EvenementAbstract evenement in evenements)
+        {
+            ajouterUnEvenementSurToutSesCreneaux(evenement);
+        }
+        horloge = FindObjectOfType<Horloge>();
         generationEvenement = FindObjectOfType<GenerationEvenement>();
     }
-    private int caseActuelle;
+    public void supprimerEvenementSurToutLesCreneaux(EvenementAbstract evenementAbstract)
+    {
+        foreach (List<EvenementAbstract> liste in cases)
+        {
+            if (liste.Contains(evenementAbstract))
+            {
+                liste.Remove(evenementAbstract);
+            }
+        }
+    }
+    public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract)
+    {
+        ajouterEvenementSurUnCreneau(evenementAbstract, evenementAbstract.getCreneaux()[0]);
+    }
+    public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract, int creneau)
+    {
+        cases[creneau].Add(evenementAbstract);
+    }
     /**
      * détermine si un évenement devrait se réaliser sur le prochaine créneau et le réalise si oui
      * */
     public void changerDeCreneau()
     {
         caseActuelle = horloge.getCreneauActuel();
-        double sommeProba = 0;
-        foreach (Evenement evenement in cases[caseActuelle])
+        cases[caseActuelle].Sort();
+        float rand = UnityEngine.Random.Range(0, 100);
+        if (!evenmentIsAboutToHappen)
         {
-            if (evenement.isRealisable())
-            {
-                sommeProba += evenement.getProba();
-            }
-        }
-        float rand = Random.Range(0,10);
-        if (rand < sommeProba )
-        {
-            sommeProba=0;
-            foreach (Evenement evenement in cases[caseActuelle])
+            foreach (EvenementAbstract evenement in cases[caseActuelle])
             {
                 if (evenement.isRealisable())
                 {
-                    sommeProba += evenement.getProba();
-                    if (sommeProba > rand)
+                    if (evenement.getProba() >= rand)
                     {
                         generationEvenement.afficher(evenement);
                         break;
@@ -64,5 +96,16 @@ public class Botin : MonoBehaviour
                 }
             }
         }
+        evenmentIsAboutToHappen = false;
+    }
+    public bool essayerForcerEvenement(EvenementAbstract evenementAbstract)
+    {
+        if (evenementAbstract.isRealisable() && !evenmentIsAboutToHappen)
+        {
+            evenmentIsAboutToHappen = true;
+            generationEvenement.afficher(evenementAbstract);
+            return true;
+        }
+        return false;
     }
 }

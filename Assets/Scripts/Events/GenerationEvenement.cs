@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,24 +7,20 @@ using UnityEngine.UI;
 
 public class GenerationEvenement : MonoBehaviour {
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     private  Button[] buttons;
-    private  Evenement evenement;
+    private  EvenementAbstract evenement;
     private  Text corpsTexte;
     private Text titre;
-    public void afficher(Evenement evenement)
+    public static GenerationEvenement instance;
+    public void afficher(EvenementAbstract evenement)
     {
         this.evenement = evenement;
-        fenetre = Instantiate(fenetreTemplate,transform);
+        fenetre = Instantiate(fenetreTemplate,transform.parent);
         Text[] textes = fenetre.GetComponentsInChildren<Text>();
         foreach(Text text in textes)
         {
@@ -37,11 +31,31 @@ public class GenerationEvenement : MonoBehaviour {
                 titre = text;
             }
         }
+        if (evenement.GetType().GetInterface("EvenementEffetSiOccuppe") != null &&Personnage.main.occuppe)
+        {
+            EvenementEffetSiOccuppe evnmt = (EvenementEffetSiOccuppe)evenement;
+            evnmt.onOccuppe();
+            corpsTexte.text = "Vous ratez l'événement " + evenement.getTitre() + " car vous êtes occuppé";
+            titre.text = evenement.getTitre()+" raté";
+            buttons = fenetre.GetComponentsInChildren<Button>();
+            buttons[0].onClick.AddListener(supprimerEvenement);
+            buttons[0].GetComponentInChildren<Text>().text = "Ok";
+            Destroy(buttons[1].gameObject);
+            return;
+        }
         buttons = fenetre.GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(realiserChoix1);
         buttons[0].GetComponentInChildren<Text>().text = evenement.getChoix1();
-        buttons[1].onClick.AddListener(realiserChoix2);
-        buttons[1].GetComponentInChildren<Text>().text = evenement.getChoix2();
+        if (evenement.isEvenmentDeuxChoix())
+        {
+            EvenementDeuxChoix evnmt = (EvenementDeuxChoix)evenement;
+            buttons[1].onClick.AddListener(realiserChoix2);
+            buttons[1].GetComponentInChildren<Text>().text = evnmt.getChoix2();
+        }
+        else
+        {
+            Destroy(buttons[1].gameObject);
+        }
         corpsTexte.text = evenement.getTexte();
         titre.text = evenement.getTitre();
     }
@@ -71,12 +85,26 @@ public class GenerationEvenement : MonoBehaviour {
     private  GameObject fenetre;
     public void realiserChoix1()
     {
-        afficherResultat(evenement.getTexteSiChoix1());
         evenement.realiserChoix1();
+        if (evenement.isEvenmentDeuxChoix())
+        {
+            EvenementDeuxChoix evnmt = (EvenementDeuxChoix) evenement;
+            afficherResultat(evnmt.getTexteSiChoix1());
+
+        }
+        else
+        {
+            supprimerEvenement();
+        }
     }
     public void realiserChoix2()
     {
-        afficherResultat(evenement.getTexteSiCHoix2());
-        evenement.realiserChoix2();
+        if (evenement.isEvenmentDeuxChoix())
+        {
+            EvenementDeuxChoix evnmt =(EvenementDeuxChoix) evenement;
+            evnmt.realiserChoix2();
+            afficherResultat(evnmt.getTexteSiCHoix2());
+            
+        }
     }
 }

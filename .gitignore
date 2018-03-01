@@ -40,3 +40,6 @@ sysinfo.txt
 *.exe
 
 # End of https://www.gitignore.io/api/unity
+\.idea/\.idea\.HGS/\.idea/
+
+\.idea/\.idea\.HGS/
