@@ -16,7 +16,7 @@ public class RdvMedecinEvenement : EvenementUnSeulChoix
     public override void realiserChoix1()
     {
         Botin.instance.supprimerEvenementSurToutLesCreneaux(this);
-        Personnage.main.removeStatus((int)StatusEnum.Grippe);
+        Personnage.instance.removeStatus((int)StatusEnum.Grippe);
         Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
         addEventResultToHistorique();
     }

@@ -19,8 +19,14 @@ public abstract class EvenementDeuxChoix : EvenementAbstract
     }
     protected String texteSiChoix1;
     protected String texteSiChoix2;
-
-    public EvenementDeuxChoix(int id, float proba, List<Condition> conditions, string choix1,string choix2,string titre, string texte, List<int> creneaux , string texteSiChoix1 , string texteSiChoix2) : base(id, proba, conditions, choix1, titre, texte, creneaux)
+    double mult(double a , double b)
+    {
+        return a * b;
+    }
+    public EvenementDeuxChoix(int id, float proba, List<Condition> conditions, 
+        string choix1,string choix2,string titre, string texte, List<int> creneaux ,
+        string texteSiChoix1 , string texteSiChoix2) : base(id, proba, conditions, choix1, titre,
+            texte, creneaux)
     {
         this.texteSiChoix1 = texteSiChoix1;
         this.texteSiChoix2 = texteSiChoix2;

@@ -77,7 +77,7 @@ public class Horloge : MonoBehaviour {
 
     public void setCreneauActuel(int nouveauCreneau)
     {
-        Personnage.main.occuppe = true;
+        Personnage.instance.occuppe = true;
         int iterations = nouveauCreneau-creneauActuel;
         if (iterations < 0)
         {
@@ -87,7 +87,7 @@ public class Horloge : MonoBehaviour {
         {
             avancerDunCreneau();
         }
-        Personnage.main.occuppe = false;
+        Personnage.instance.occuppe = false;
     }
     /**
      * représente un déplacement dans le temps de 2 heures normal pendant lequel des événements peuvent se produire
@@ -105,7 +105,7 @@ public class Horloge : MonoBehaviour {
         creneauActuel++;
         creneauActuel = creneauActuel%12;
         texteHorloge.text = creneauActuel * 2 + ":00";
-        Personnage.main.affecterStatus(1);
+        Personnage.instance.affecterStatus(1);
         botin.changerDeCreneau();
     }
     public static int getCreneauxLeftTo(int daysToWait,int creneauWanted)

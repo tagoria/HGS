@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Evenement14_Faluche : Evenement {
+public class Evenement14_Faluche : EvenementDeuxChoix {
 
     private static int probaFaluche = 10;
     //if ( ){} mettre conditions sur les Perk 

@@ -13,8 +13,8 @@ public class ConferenceHeiEvenement : EvenementDeuxChoix
 
     public override void realiserChoix1()
     {
-        Personnage.main.augmenterTravailActuel(25);
-        Personnage.main.diminuerEnergieActuelle(15);
+        Personnage.instance.augmenterTravailActuel(25);
+        Personnage.instance.diminuerEnergieActuelle(15);
         addResultatToHistorique(CONFERENCE_ASSISTE);
         Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
     }

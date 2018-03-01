@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-public interface EvenementEffetSiOccuppe 
+public interface IEvenementEffetSiOccuppe 
 {
     void onOccuppe();
 }

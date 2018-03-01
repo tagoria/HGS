@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConditionJoueurOccupe : EvenementAbstract.Condition {
     public override bool verify()
     {
-        return( (condition && Personnage.main.occuppe) || (!condition && !Personnage.main.occuppe));
+        return( (condition && Personnage.instance.occuppe) || (!condition && !Personnage.instance.occuppe));
     }
     private bool condition;
     public ConditionJoueurOccupe(bool occupe)

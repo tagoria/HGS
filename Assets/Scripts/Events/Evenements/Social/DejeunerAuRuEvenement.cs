@@ -12,12 +12,12 @@ public class DejeunerAuRuEvenement : EvenementDeuxChoix
 
     public override void realiserChoix1()
     {
-        Personnage.main.augmentersocialActuelle(15);
+        Personnage.instance.augmentersocialActuelle(15);
         Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(1);
     }
 
     public override void realiserChoix2()
     {
-        Personnage.main.diminuersocialActuelle(5);
+        Personnage.instance.diminuersocialActuelle(5);
     }
 }

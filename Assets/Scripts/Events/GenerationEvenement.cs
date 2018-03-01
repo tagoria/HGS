@@ -31,9 +31,9 @@ public class GenerationEvenement : MonoBehaviour {
                 titre = text;
             }
         }
-        if (evenement.GetType().GetInterface("EvenementEffetSiOccuppe") != null &&Personnage.main.occuppe)
+        if (evenement.GetType().GetInterface("EvenementEffetSiOccuppe") != null &&Personnage.instance.occuppe)
         {
-            EvenementEffetSiOccuppe evnmt = (EvenementEffetSiOccuppe)evenement;
+            IEvenementEffetSiOccuppe evnmt = (IEvenementEffetSiOccuppe)evenement;
             evnmt.onOccuppe();
             corpsTexte.text = "Vous ratez l'événement " + evenement.getTitre() + " car vous êtes occuppé";
             titre.text = evenement.getTitre()+" raté";

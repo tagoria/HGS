@@ -15,22 +15,22 @@ namespace Events.Evenements.Social
 
         public override Double getProba()
         {
-            double add = Personnage.main.hasPerk(PerksEnum.Fetard) ? 10 : 0;
-            add += Personnage.main.hasPerk(PerksEnum.Geek) ? -5 : 0;
-            add += Personnage.main.hasPerk(PerksEnum.Stresse) ? -5 : 0;
+            double add = Personnage.instance.hasPerk(PerksEnum.Fetard) ? 10 : 0;
+            add += Personnage.instance.hasPerk(PerksEnum.Geek) ? -5 : 0;
+            add += Personnage.instance.hasPerk(PerksEnum.Stresse) ? -5 : 0;
             return base.getProba() + add;
         }
         public override void realiserChoix1()
         {
-            Personnage.main.augmentersocialActuelle(20);
-            Personnage.main.diminuerEnergieActuelle(5);
-            Personnage.main.diminuerTravailActuel(5);
+            Personnage.instance.augmentersocialActuelle(20);
+            Personnage.instance.diminuerEnergieActuelle(5);
+            Personnage.instance.diminuerTravailActuel(5);
             Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(1);
         }
 
         public override void realiserChoix2()
         {
-            Personnage.main.diminuersocialActuelle(5);
+            Personnage.instance.diminuersocialActuelle(5);
         }
     }
 }

@@ -13,7 +13,7 @@ public class EvenementJourFerie : EvenementUnSeulChoix
     };
     public override void realiserChoix1()
     {
-        Personnage.main.ajouterStatus(new StatusJourFerie());
+        Personnage.instance.ajouterStatus(new StatusJourFerie());
         addEventResultToHistorique();
     }
 

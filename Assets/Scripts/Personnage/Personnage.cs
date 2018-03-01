@@ -8,7 +8,7 @@ public class Personnage : MonoBehaviour {
     private void Awake()
     {
         listeStatus = new Dictionary<int, StatusAbstract>();
-        main = this;
+        instance = this;
     }
     // Use this for initialization
     void Start () {
@@ -109,7 +109,7 @@ public class Personnage : MonoBehaviour {
         StatusHolder.instance.afficherStatus(listeStatus);
     }
 
-    internal static Personnage main;
+    internal static Personnage instance;
     public float maxEnergieBase;
     public float maxTravailBase;
     public float maxsocialBase;

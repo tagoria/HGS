@@ -11,8 +11,8 @@ public class EvenementCoursSoir : EvenementDeuxChoix
     //l'evenement se produit sur les créneuax 4 et 5 uniquement si il ne s'est pas produit la veille
     public override void realiserChoix1()
     {
-        Personnage.main.augmenterTravailActuel(20);
-        Personnage.main.diminuerEnergieActuelle(10);
+        Personnage.instance.augmenterTravailActuel(20);
+        Personnage.instance.diminuerEnergieActuelle(10);
         Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 2);
         Horloge.instance.addToHistorique(new EventResult(this, COURS_ASSISTE));
     }

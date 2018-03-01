@@ -14,7 +14,7 @@ public class AbsenceBizarreEvenement : EvenementDeuxChoix
 
     public override void realiserChoix1()
     {
-        Personnage.main.ajouterStatus(new RDVAvrinStatus());
+        Personnage.instance.ajouterStatus(new RDVAvrinStatus());
     }
 
     public override void realiserChoix2()

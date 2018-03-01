@@ -6,7 +6,7 @@ public class Recommencer : MonoBehaviour {
 
     public void recommencer()
     {
-        Personnage.main.recommencer();
+        Personnage.instance.recommencer();
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)NumeroSceneEnum.EcranPrincipal, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

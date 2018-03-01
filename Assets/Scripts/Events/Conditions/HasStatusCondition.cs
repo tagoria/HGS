@@ -11,6 +11,6 @@ public class HasStatusCondition : EvenementAbstract.Condition
 
     public override bool verify()
     {
-        return (Personnage.main.hasStatus(status)&&shouldHave)||(!Personnage.main.hasStatus(status)&&!shouldHave);
+        return (Personnage.instance.hasStatus(status)&&shouldHave)||(!Personnage.instance.hasStatus(status)&&!shouldHave);
     }
 }

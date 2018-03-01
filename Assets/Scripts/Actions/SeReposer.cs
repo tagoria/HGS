@@ -5,9 +5,9 @@ using UnityEngine;
 public class SeReposer : Action {
     public override void Act()
     {
-        Personnage.main.diminuerTravailActuel(10);
-        Personnage.main.augmenterEnergieActuelle(10);
-        Personnage.main.augmentersocialActuelle(5);
+        Personnage.instance.diminuerTravailActuel(10);
+        Personnage.instance.augmenterEnergieActuelle(10);
+        Personnage.instance.augmentersocialActuelle(5);
         base.Act();
     }
 

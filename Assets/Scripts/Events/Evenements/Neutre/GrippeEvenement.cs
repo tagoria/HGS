@@ -12,21 +12,21 @@ public class GrippeEvenement : EvenementDeuxChoix
 
     public override double getProba()
     {
-        int malade = Personnage.main.hasPerk(PerksEnum.Malade)?1:0;
-        int grippe = Personnage.main.hasStatus(StatusEnum.Grippe) ? 1 : 0;
+        int malade = Personnage.instance.hasPerk(PerksEnum.Malade)?1:0;
+        int grippe = Personnage.instance.hasStatus(StatusEnum.Grippe) ? 1 : 0;
         return base.getProba() +10*malade +15*grippe;
     }
     public override void realiserChoix1()
     {
-        Personnage.main.ajouterStatus(new RdvMedecinStatus(3));
-        Personnage.main.ajouterStatus(new GrippeStatus());
+        Personnage.instance.ajouterStatus(new RdvMedecinStatus(3));
+        Personnage.instance.ajouterStatus(new GrippeStatus());
         Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
         Horloge.instance.addToHistorique(new EventResult(this, RDV_PRIS));
     }
 
     public override void realiserChoix2()
     {
-        Personnage.main.ajouterStatus(new GrippeStatus());
+        Personnage.instance.ajouterStatus(new GrippeStatus());
         Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
         Horloge.instance.addToHistorique(new EventResult(this, PAS_DE_RDV));
     }

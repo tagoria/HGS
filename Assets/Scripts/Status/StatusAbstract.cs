@@ -20,7 +20,7 @@ public abstract class StatusAbstract
 
     public virtual void onEnd()
     {
-        Personnage.main.removeStatus(this.id);
+        Personnage.instance.removeStatus(this.id);
     }
     public virtual void onTimePass()
     {

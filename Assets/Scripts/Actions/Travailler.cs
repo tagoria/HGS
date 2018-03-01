@@ -10,8 +10,8 @@ public class Travailler : Action
     }
     public override void Act()
     {
-        Personnage.main.augmenterTravailActuel(10);
-        Personnage.main.diminuerEnergieActuelle(10);
+        Personnage.instance.augmenterTravailActuel(10);
+        Personnage.instance.diminuerEnergieActuelle(10);
         base.Act();
     }
 }

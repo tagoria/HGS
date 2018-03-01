@@ -13,14 +13,14 @@ namespace Events.Evenements.Social
 
         public override void realiserChoix1()
         {
-            Personnage.main.augmentersocialActuelle(15);
-            Personnage.main.diminuerEnergieActuelle(10);
+            Personnage.instance.augmentersocialActuelle(15);
+            Personnage.instance.diminuerEnergieActuelle(10);
             Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(Random.Range(2,4));
         }
 
         public override void realiserChoix2()
         {
-            Personnage.main.diminuersocialActuelle(5);
+            Personnage.instance.diminuersocialActuelle(5);
         }
     }
 }

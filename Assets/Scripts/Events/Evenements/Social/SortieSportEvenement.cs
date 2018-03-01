@@ -12,8 +12,8 @@ namespace Events.Evenements.Social
 
         public override void realiserChoix1()
         {
-            Personnage.main.augmentersocialActuelle(30);
-            Personnage.main.diminuerEnergieActuelle(25);
+            Personnage.instance.augmentersocialActuelle(30);
+            Personnage.instance.diminuerEnergieActuelle(25);
             Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(2);
         }
 

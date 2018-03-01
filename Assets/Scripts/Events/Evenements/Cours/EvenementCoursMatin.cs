@@ -10,8 +10,8 @@ public class EvenementCoursMatin : EvenementDeuxChoix
     }
     public override void realiserChoix1()
     {
-        Personnage.main.augmenterTravailActuel(20);
-        Personnage.main.diminuerEnergieActuelle(10);
+        Personnage.instance.augmenterTravailActuel(20);
+        Personnage.instance.diminuerEnergieActuelle(10);
         Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 2);
         Horloge.instance.addToHistorique(new EventResult(this, COURS_ASSISTE));
     }

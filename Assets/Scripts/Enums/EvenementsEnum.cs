@@ -22,4 +22,5 @@
     SportBDS = 20,
     BalHEI = 21,
     AfterworkHei = 22,
+    Conference = 23,
 }
