@@ -23,4 +23,5 @@
     BalHEI = 21,
     AfterworkHei = 22,
     Conference = 23,
+    FrigoVide = 24,
 }
