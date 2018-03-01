@@ -18,7 +18,7 @@ public class TpNotesEvenement : EvenementDeuxChoix
         Personnage.main.augmenterTravailActuel(25);
         Personnage.main.diminuerEnergieActuelle(25);
         addResultatToHistorique(TP_ASSISTE);
-        Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel()+2);
+        Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(2);
     }
 
     public override void realiserChoix2()

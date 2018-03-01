@@ -11,6 +11,6 @@ public class EvenementSiesteRemplaceCours : EvenementUnSeulChoix
 
     public override void realiserChoix1()
     {
-        throw new System.NotImplementedException();
+        Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(1);
     }
 }

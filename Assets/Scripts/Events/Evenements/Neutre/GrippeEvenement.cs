@@ -6,7 +6,7 @@ public class GrippeEvenement : EvenementDeuxChoix
 {
     public static int RDV_PRIS = 0;
     public static int PAS_DE_RDV = 1;
-    public GrippeEvenement() : base((int) EvenementsEnum.Grippe, 80, generateConditions(new ConditionJoueurOccupe(false)), "Prendre un rdv chez le médecin", "Se rendormir", "La grippe", "Vous vous sentes fébrile",generateCreneau(4,5,6), "Vous prenez un rdv chez le médecin avant de sombrer", "Vous sombrez dans l'inconscience")
+    public GrippeEvenement() : base((int) EvenementsEnum.Grippe, 10, generateConditions(new ConditionJoueurOccupe(false)), "Prendre un rdv chez le médecin", "Se rendormir", "La grippe", "Vous vous sentes fébrile",generateCreneau(4,5,6), "Vous prenez un rdv chez le médecin avant de sombrer", "Vous sombrez dans l'inconscience")
     {
     }
 

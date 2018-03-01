@@ -23,12 +23,18 @@ public class Horloge : MonoBehaviour {
 
     internal bool LookForResult(EventResult eventResult, int nbCreneaux)
     {
-        int lastHappened = historique.LastIndexOf(eventResult);
-        if (lastHappened == -1)
+        try
+        {
+            int lastHappened = historique.LastIndexOf(eventResult);
+            if (lastHappened == -1)
+            {
+                return false;
+            }
+            return lastHappened - crenauxEcoules < nbCreneaux;
+        }catch(Exception e)
         {
             return false;
         }
-        return lastHappened - crenauxEcoules<nbCreneaux;
 
     }
 
@@ -69,10 +75,10 @@ public class Horloge : MonoBehaviour {
      * en opposition a avancerDunCreneau()
      * */
 
-    public void setCreneauActuel(int creneauActuel)
+    public void setCreneauActuel(int nouveauCreneau)
     {
         Personnage.main.occuppe = true;
-        int iterations = creneauActuel - creneauActuel;
+        int iterations = nouveauCreneau-creneauActuel;
         if (iterations < 0)
         {
             iterations += 12;

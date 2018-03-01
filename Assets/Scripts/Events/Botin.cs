@@ -42,6 +42,13 @@ public class Botin : MonoBehaviour
         evenements.Add(new ReunionDeProjetEvenement());
         evenements.Add(new TpNotesEvenement());
         evenements.Add(new CoursClarifeEvenement());
+        evenements.Add(new DejeunerAuRuEvenement());
+        evenements.Add(new ConferenceHeiEvenement());
+        evenements.Add(new EvenementSiesteRemplaceCours());
+        evenements.Add(new OuvertureCulturelleEvenement());
+        evenements.Add(new TpNotesEvenement());
+        evenements.Add(new ReunionDeProjetEvenement());
+        evenements.Add(new AbsenceBizarreEvenement());
         foreach (EvenementAbstract evenement in evenements)
         {
             ajouterUnEvenementSurToutSesCreneaux(evenement);
