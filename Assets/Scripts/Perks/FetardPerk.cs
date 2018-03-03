@@ -1,14 +1,17 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using System;
+using Enums;
 
-public class FetardPerk : Perk
+namespace Perks
 {
-    public FetardPerk() : base((int)PerksEnum.Fetard,"Fetard")
+    public class FetardPerk : Perk
     {
-    }
+        public FetardPerk() : base((int) PerksEnum.Fetard, "Fetard")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,21 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Personnage;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PerkToggle : MonoBehaviour {
-
-    public int perkId;
-    public void TogglePerk()
+namespace Perks
+{
+    public class PerkToggle : MonoBehaviour
     {
-        bool newValue=GetComponentInChildren<Toggle>().isOn;
-        if (newValue)
+        public int perkId;
+
+        public void TogglePerk()
         {
-            Component.FindObjectOfType<CreationPersonnage>().AddPerk(perkId);
-        }
-        else
-        {
-            Component.FindObjectOfType<CreationPersonnage>().DeletePerk(perkId);
+            var newValue = GetComponentInChildren<Toggle>().isOn;
+            if (newValue)
+                FindObjectOfType<CreationPersonnage>().AddPerk(perkId);
+            else
+                FindObjectOfType<CreationPersonnage>().DeletePerk(perkId);
         }
     }
 }

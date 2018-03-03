@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class MaladePerk : Perk {
-    public MaladePerk() : base((int) PerksEnum.Malade, "Malade")
+namespace Perks
+{
+    public class MaladePerk : Perk
     {
-    }
+        public MaladePerk() : base((int) PerksEnum.Malade, "Malade")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

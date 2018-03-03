@@ -1,33 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Barre : MonoBehaviour  {
-    private void Awake()
+namespace Utils
+{
+    public class Barre : MonoBehaviour
     {
-        maxScale = transform.localScale;
+        private int id;
+        private Vector3 maxScale;
+        private float valeur;
+        public float valeurCap;
+        internal float valeurMini;
+
+        public float Valeur
+        {
+            get
+            {
+                return valeur;
+            }
+
+            set
+            {
+                valeur = value;
+                changeSize();
+            }
+        }
+
+        private void Awake()
+        {
+            maxScale = transform.localScale;
+        }
+
+
+        private void changeSize()
+        {
+            transform.localScale = new Vector3(maxScale.x * Valeur / valeurCap, maxScale.y, maxScale.z);
+        }
     }
-    // Use this for initialization
-    public  void Start () {
-        
-	}
-    public void setValeur(float valeur)
-    {
-        this.valeur = valeur;
-        changeSize();
-    }
-    private Vector3 maxScale;
-    private int id;
-    public float valeur;
-    public float valeurCap;
-    internal float valeurMini;
-
-    private void changeSize()
-    {
-        transform.localScale = new Vector3(maxScale.x*valeur/valeurCap,maxScale.y,maxScale.z);
-    }
-
-
-
-
 }

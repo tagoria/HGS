@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SeReposer : Action {
-    public override void Act()
+﻿namespace Actions
+{
+    public class SeReposer : Action
     {
-        Personnage.instance.diminuerTravailActuel(10);
-        Personnage.instance.augmenterEnergieActuelle(10);
-        Personnage.instance.augmentersocialActuelle(5);
-        base.Act();
-    }
+        public override void Act()
+        {
+            Personnage.Player.instance.diminuerTravailActuel(10);
+            Personnage.Player.instance.AugmenterEnergieActuelle(10);
+            Personnage.Player.instance.AugmenterSocialActuel(5);
+            base.Act();
+        }
 
-    // Use this for initialization
-    private void Awake () {
-        nom ="Se Reposer";
-	}
-	
-	
+        // Use this for initialization
+        private void Awake()
+        {
+            nom = "Se Reposer";
+        }
+    }
 }

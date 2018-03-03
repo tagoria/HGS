@@ -1,22 +1,24 @@
-﻿
+﻿using Enums;
+using Events;
 
-public class StatusJourFerie: StatusAbstract
+namespace Status
 {
-    public StatusJourFerie() : base(12-Horloge.instance.getCreneauActuel(),"Jour férié","Aujourd'hui c'est férié donc pas de cours",(int)StatusEnum.JourFerie)
+    public class StatusJourFerie : StatusAbstract
     {
-    }
+        public StatusJourFerie() : base(12 - Horloge.instance.getCreneauActuel(), "Jour férié",
+            "Aujourd'hui c'est férié donc pas de cours", (int) StatusEnum.JourFerie)
+        {
+        }
 
-    public override void onEnd()
-    {
-        Botin.instance.ferie = false;
-        base.onEnd();
-    }
+        public override void onEnd()
+        {
+            Botin.instance.ferie = false;
+            base.onEnd();
+        }
 
-    public override void onStart()
-    {
-        Botin.instance.ferie = true ;
+        public override void onStart()
+        {
+            Botin.instance.ferie = true;
+        }
     }
-    
-
-    
 }

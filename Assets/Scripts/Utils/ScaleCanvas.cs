@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScaleCanvas : MonoBehaviour {
-
-	public void Scale()
+namespace Utils
+{
+    public class ScaleCanvas : MonoBehaviour
     {
-        float scale = GetComponent<Slider>().value;
-        GetComponentInParent<CanvasScaler>().matchWidthOrHeight = scale;
-        GetComponentInChildren<Text>().text = scale.ToString();
+        public void Scale()
+        {
+            var scale = GetComponent<Slider>().value;
+            GetComponentInParent<CanvasScaler>().matchWidthOrHeight = scale;
+            GetComponentInChildren<Text>().text = scale.ToString(CultureInfo.InvariantCulture);
+        }
     }
 }

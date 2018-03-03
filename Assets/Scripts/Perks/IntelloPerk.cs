@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class IntelloPerk : Perk {
-    public IntelloPerk() : base((int)PerksEnum.Intello, "Intello")
+namespace Perks
+{
+    public class IntelloPerk : Perk
     {
-    }
+        public IntelloPerk() : base((int) PerksEnum.Intello, "Intello")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

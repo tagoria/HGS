@@ -1,12 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Enums;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Recommencer : MonoBehaviour {
-
-    public void recommencer()
+namespace Utils
+{
+    public class Recommencer : MonoBehaviour
     {
-        Personnage.instance.recommencer();
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)NumeroSceneEnum.EcranPrincipal, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        public void recommencer()
+        {
+            Personnage.Player.instance.recommencer();
+            SceneManager.LoadSceneAsync((int) NumeroSceneEnum.EcranPrincipal, LoadSceneMode.Single);
+        }
     }
 }

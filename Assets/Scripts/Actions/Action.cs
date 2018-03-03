@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class Action : MonoBehaviour  {
+namespace Actions
+{
+    public abstract class Action : MonoBehaviour
+    {
+        private Horloge horloge;
+        protected string nom;
 
-    private void Start()
-    {
-        horloge = FindObjectOfType<Horloge>();
-    }
-    private Horloge horloge;
-    public virtual void Act()
-    {
-        horloge.setDerniereActionRealisee(this);
-        horloge.avancerDunCreneau();
-        
-    }
-    protected string nom;
-    public string GetNom()
-    {
-        return nom;
+        private void Start()
+        {
+            horloge = FindObjectOfType<Horloge>();
+        }
+
+        public virtual void Act()
+        {
+            horloge.setDerniereActionRealisee(this);
+            horloge.avancerDunCreneau();
+        }
+
+        public string GetNom()
+        {
+            return nom;
+        }
     }
 }

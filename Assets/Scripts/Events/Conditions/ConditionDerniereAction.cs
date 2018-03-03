@@ -1,21 +1,26 @@
 ﻿using System;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
-public class ConditionDerniereAction : EvenementAbstract.Condition
+namespace Events.Conditions
 {
-    private Type action;
-
-    public ConditionDerniereAction(Type action)
+    public class ConditionDerniereAction : EvenementAbstract.Condition
     {
-        this.action = action;
-    }
+        private readonly Type action;
 
-    public override bool verify()
-    {
-        Horloge horloge = Component.FindObjectOfType<Horloge>();
-        if (horloge.getDerniereActionRealisee() != null)
+        public ConditionDerniereAction(Type action)
         {
+            this.action = action;
         }
-        return (horloge.getDerniereActionRealisee()!=null&& horloge.getDerniereActionRealisee().GetType().Equals(action)) ;
+
+        public override bool verify()
+        {
+            var horloge = Object.FindObjectOfType<Horloge>();
+            if (horloge.getDerniereActionRealisee() != null)
+            {
+            }
+
+            return horloge.getDerniereActionRealisee() != null &&
+                   horloge.getDerniereActionRealisee().GetType().Equals(action);
+        }
     }
 }

@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class RedoublantPerk : Perk {
-    public RedoublantPerk() : base((int) PerksEnum.Redoublant, "Redoublant")
+namespace Perks
+{
+    public class RedoublantPerk : Perk
     {
-    }
+        public RedoublantPerk() : base((int) PerksEnum.Redoublant, "Redoublant")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

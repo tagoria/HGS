@@ -1,15 +1,17 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using Enums;
 
-public class GrippeStatus : StatusAbstract
+namespace Status
 {
-    public GrippeStatus() : base(36, "Grippé", "Votre grippe non soignée peut vous faire perdre connaissance à tout moment",(int)StatusEnum.Grippe)
+    public class GrippeStatus : StatusAbstract
     {
-    }
+        public GrippeStatus() : base(36, "Grippé",
+            "Votre grippe non soignée peut vous faire perdre connaissance à tout moment", (int) StatusEnum.Grippe)
+        {
+        }
 
-    public override void onStart()
-    {
-        //rien
+        public override void onStart()
+        {
+            //rien
+        }
     }
-
 }

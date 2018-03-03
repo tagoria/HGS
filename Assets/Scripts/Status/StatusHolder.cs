@@ -1,31 +1,33 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class StatusHolder : MonoBehaviour
+namespace Status
 {
-    public static StatusHolder instance;
-    private void Awake()
+    public class StatusHolder : MonoBehaviour
     {
-        instance = this;
-        statusAffiches = new List<GameObject>();
-    }
-    public GameObject statusTemplate;
-    private List<GameObject> statusAffiches;
-    public void afficherStatus(Dictionary<int,StatusAbstract> status)
-    {
-        foreach(GameObject textes in statusAffiches)
+        public static StatusHolder instance;
+        private List<GameObject> statusAffiches;
+        public GameObject statusTemplate;
+
+        private void Awake()
         {
-            Destroy(textes);
+            instance = this;
+            statusAffiches = new List<GameObject>();
         }
-        int hauteur = 0;
-        foreach(StatusAbstract statu in status.Values)
+
+        public void afficherStatus(Dictionary<int, StatusAbstract> status)
         {
-            GameObject texte= Instantiate(statusTemplate,this.transform);
-            statusAffiches.Add(texte);
-            texte.GetComponent<Text>().text = statu.ToString();
-            texte.transform.localPosition = new Vector2(0,hauteur);
-            hauteur -= 60;
+            foreach (var textes in statusAffiches) Destroy(textes);
+            var hauteur = 0;
+            foreach (var statu in status.Values)
+            {
+                var texte = Instantiate(statusTemplate, transform);
+                statusAffiches.Add(texte);
+                texte.GetComponent<Text>().text = statu.ToString();
+                texte.transform.localPosition = new Vector2(0, hauteur);
+                hauteur -= 60;
+            }
         }
     }
 }

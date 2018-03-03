@@ -1,16 +1,18 @@
-﻿
-public enum PerksEnum :int
+﻿namespace Enums
 {
-    Abstenteiste = 1,
-    Dormeur = 2,
-    Fetard = 3,
-    Geek = 4,
-    Glouton = 5,
-    Insomniaque = 6,
-    Intello = 7,
-    Malade = 8,
-    Procrastinateur = 9,
-    Redoublant = 10,
-    Sportif = 11,
-    Stresse = 12
+    public enum PerksEnum
+    {
+        Abstenteiste = 1,
+        Dormeur = 2,
+        Fetard = 3,
+        Geek = 4,
+        Glouton = 5,
+        Insomniaque = 6,
+        Intello = 7,
+        Malade = 8,
+        Procrastinateur = 9,
+        Redoublant = 10,
+        Sportif = 11,
+        Stresse = 12
+    }
 }

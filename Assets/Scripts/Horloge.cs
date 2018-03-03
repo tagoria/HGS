@@ -1,17 +1,23 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Events;
 using UnityEngine;
 using UnityEngine.UI;
-public class Horloge : MonoBehaviour {
+using Action = Actions.Action;
+
+public class Horloge : MonoBehaviour
+{
     private static int creneauActuel;
-    private Text texteHorloge;
-    private Botin botin;
     public static Horloge instance;
-    private List<EventResult> historique;
-    private int crenauxEcoules;
+    private Botin botin;
     public Text Calendrier;
+    private int crenauxEcoules;
+    private Action derniereActionRealisee;
+    private List<EventResult> historique;
     private int nbJoursEcoules;
+
+    private Text texteHorloge;
+
     // Use this for initialization
     private void Awake()
     {
@@ -19,53 +25,58 @@ public class Horloge : MonoBehaviour {
         crenauxEcoules = 0;
         instance = this;
         historique = new List<EventResult>();
+        historique.Add(new EventResult(Enums.Evenement.EvenementCanette,0));
     }
 
     internal bool LookForResult(EventResult eventResult, int nbCreneaux)
     {
         try
         {
-            int lastHappened = historique.LastIndexOf(eventResult);
-            if (lastHappened == -1)
-            {
-                return false;
-            }
-            return lastHappened - crenauxEcoules < nbCreneaux;
-        }catch(Exception e)
+            var lastHappened = historique.LastIndexOf(eventResult);
+            if (lastHappened == -1) return false;
+            return historique[lastHappened].CreneauDebut - crenauxEcoules < nbCreneaux;
+        }
+        catch (Exception e)
         {
+            Debug.LogException(e);
             return false;
         }
-
     }
 
-    void Start () {
+    private void Start()
+    {
         botin = FindObjectOfType<Botin>();
         texteHorloge = GetComponent<Text>();
-	}
+    }
+
     public void addToHistorique(EventResult eventResult)
     {
         historique.Add(eventResult);
     }
-    private Action derniereActionRealisee;
+
     public Action getDerniereActionRealisee()
     {
         return derniereActionRealisee;
     }
+
     public void setDerniereActionRealisee(Action action)
     {
         derniereActionRealisee = action;
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    private void Update()
+    {
+    }
+
     public int getCreneauActuel()
     {
         return creneauActuel;
     }
+
     public void avancerDePlusierusCreneauxEnEtantOccupe(int creneaux)
     {
-        this.setCreneauActuel((creneauActuel+creneaux)%12);
+        setCreneauActuel((creneauActuel + creneaux) % 12);
     }
     /**
      * fixe l'heure actuelle sans passer par avancerDunCreneau()
@@ -77,18 +88,13 @@ public class Horloge : MonoBehaviour {
 
     public void setCreneauActuel(int nouveauCreneau)
     {
-        Personnage.instance.occuppe = true;
-        int iterations = nouveauCreneau-creneauActuel;
-        if (iterations < 0)
-        {
-            iterations += 12;
-        }
-        for (int i = 0; i < iterations; i++)
-        {
-            avancerDunCreneau();
-        }
-        Personnage.instance.occuppe = false;
+        Personnage.Player.instance.occuppe = true;
+        var iterations = nouveauCreneau - creneauActuel;
+        if (iterations < 0) iterations += 12;
+        for (var i = 0; i < iterations; i++) avancerDunCreneau();
+        Personnage.Player.instance.occuppe = false;
     }
+
     /**
      * représente un déplacement dans le temps de 2 heures normal pendant lequel des événements peuvent se produire
      * en général la méthode est appellée après que le joueur a réalisé une action pour symboliser que 
@@ -102,15 +108,17 @@ public class Horloge : MonoBehaviour {
             nbJoursEcoules++;
             Calendrier.text = nbJoursEcoules.ToString();
         }
+
         creneauActuel++;
-        creneauActuel = creneauActuel%12;
+        creneauActuel = creneauActuel % 12;
         texteHorloge.text = creneauActuel * 2 + ":00";
-        Personnage.instance.affecterStatus(1);
+        Personnage.Player.instance.affecterStatus(1);
         botin.changerDeCreneau();
     }
-    public static int getCreneauxLeftTo(int daysToWait,int creneauWanted)
+
+    public static int getCreneauxLeftTo(int daysToWait, int creneauWanted)
     {
-        int creneauxLeft = daysToWait*12;
+        var creneauxLeft = daysToWait * 12;
         creneauxLeft += -creneauActuel + creneauWanted;
         return creneauxLeft;
     }

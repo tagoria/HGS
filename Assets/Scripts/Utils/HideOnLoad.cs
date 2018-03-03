@@ -1,18 +1,20 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HideOnLoad : MonoBehaviour {
+namespace Utils
+{
+    public class HideOnLoad : MonoBehaviour
+    {
+        public bool hide;
 
-	// Use this for initialization
-	void Start () {
-        if (hide)
+        // Use this for initialization
+        private void Start()
         {
-            Destroy(this.gameObject);
+            if (hide) Destroy(gameObject);
         }
-	}
-    public bool hide;
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+        // Update is called once per frame
+        private void Update()
+        {
+        }
+    }
 }

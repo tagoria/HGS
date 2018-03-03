@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class SportifPerk : Perk{
-    public SportifPerk() : base((int) PerksEnum.Sportif,"Sportif")
+namespace Perks
+{
+    public class SportifPerk : Perk
     {
-    }
+        public SportifPerk() : base((int) PerksEnum.Sportif, "Sportif")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

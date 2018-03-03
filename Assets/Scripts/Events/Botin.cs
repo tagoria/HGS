@@ -1,111 +1,86 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class Botin : MonoBehaviour
+namespace Events
 {
-    private List<List<EvenementAbstract>> cases;
-    private Horloge horloge;
-    private GenerationEvenement generationEvenement;
-    public static Botin instance;
-    public bool ferie = false;
-    private int caseActuelle;
-    private bool evenmentIsAboutToHappen;
-    private void Awake()
+    public class Botin : MonoBehaviour
     {
-        instance = this;
-    }
-    public void ajouterUnEvenementSurToutSesCreneaux(EvenementAbstract evenement)
-    {
-        foreach (int creneau in evenement.getCreneaux())
+        public static Botin instance;
+        private int caseActuelle;
+        private List<List<EvenementAbstract>> cases;
+        private bool evenmentIsAboutToHappen;
+        public bool ferie;
+        private GenerationEvenement generationEvenement;
+        private Horloge horloge;
+
+        private void Awake()
         {
-            ajouterEvenementSurUnCreneau(evenement, creneau);
+            instance = this;
         }
-    }
-    private void Start()
-    {
-        caseActuelle = 0;
-        cases = new List<List<EvenementAbstract>>();
-        for (int i = 0; i < 12; i++)
+
+        public void ajouterUnEvenementSurToutSesCreneaux(EvenementAbstract evenement)
         {
-            cases.Add(new List<EvenementAbstract>());
+            foreach (var creneau in evenement.getCreneaux()) ajouterEvenementSurUnCreneau(evenement, creneau);
         }
-        List<EvenementAbstract> evenements = new List<EvenementAbstract>();
-        evenements.Add(new EvenementCanette());
-        evenements.Add(new EvenementCoursMatin());
-        evenements.Add(new EvenementEpuisement());
-        evenements.Add(new EvenementJourFerie());
-        evenements.Add(new GrippeEvenement());
-        evenements.Add(new EvenementCoursSoir());
-        evenements.Add(new OuvertureCulturelleEvenement());
-        evenements.Add(new ConferenceHeiEvenement());
-        evenements.Add(new ReunionDeProjetEvenement());
-        evenements.Add(new TpNotesEvenement());
-        evenements.Add(new CoursClarifeEvenement());
-        evenements.Add(new DejeunerAuRuEvenement());
-        evenements.Add(new ConferenceHeiEvenement());
-        evenements.Add(new EvenementSiesteRemplaceCours());
-        evenements.Add(new OuvertureCulturelleEvenement());
-        evenements.Add(new TpNotesEvenement());
-        evenements.Add(new ReunionDeProjetEvenement());
-        evenements.Add(new AbsenceBizarreEvenement());
-        foreach (EvenementAbstract evenement in evenements)
+
+        private void Start()
         {
-            ajouterUnEvenementSurToutSesCreneaux(evenement);
+            caseActuelle = 0;
+            cases = new List<List<EvenementAbstract>>();
+            for (var i = 0; i < 12; i++) cases.Add(new List<EvenementAbstract>());
+            var evenements = EvenementAbstract.loopThrough();
+            foreach (var evenement in evenements) ajouterUnEvenementSurToutSesCreneaux(evenement);
+            horloge = FindObjectOfType<Horloge>();
+            generationEvenement = FindObjectOfType<GenerationEvenement>();
         }
-        horloge = FindObjectOfType<Horloge>();
-        generationEvenement = FindObjectOfType<GenerationEvenement>();
-    }
-    public void supprimerEvenementSurToutLesCreneaux(EvenementAbstract evenementAbstract)
-    {
-        foreach (List<EvenementAbstract> liste in cases)
+
+        public void supprimerEvenementSurToutLesCreneaux(EvenementAbstract evenementAbstract)
         {
-            if (liste.Contains(evenementAbstract))
-            {
-                liste.Remove(evenementAbstract);
-            }
+            foreach (var liste in cases)
+                if (liste.Contains(evenementAbstract))
+                    liste.Remove(evenementAbstract);
         }
-    }
-    public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract)
-    {
-        ajouterEvenementSurUnCreneau(evenementAbstract, evenementAbstract.getCreneaux()[0]);
-    }
-    public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract, int creneau)
-    {
-        cases[creneau].Add(evenementAbstract);
-    }
-    /**
+
+        public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract)
+        {
+            ajouterEvenementSurUnCreneau(evenementAbstract, evenementAbstract.getCreneaux()[0]);
+        }
+
+        public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract, int creneau)
+        {
+            cases[creneau].Add(evenementAbstract);
+        }
+
+        /**
      * détermine si un évenement devrait se réaliser sur le prochaine créneau et le réalise si oui
      * */
-    public void changerDeCreneau()
-    {
-        caseActuelle = horloge.getCreneauActuel();
-        cases[caseActuelle].Sort();
-        float rand = UnityEngine.Random.Range(0, 100);
-        if (!evenmentIsAboutToHappen)
+        public void changerDeCreneau()
         {
-            foreach (EvenementAbstract evenement in cases[caseActuelle])
+            caseActuelle = horloge.getCreneauActuel();
+            cases[caseActuelle].Sort();
+            float rand = Random.Range(0, 100);
+            if (!evenmentIsAboutToHappen)
+                foreach (var evenement in cases[caseActuelle])
+                    if (evenement.isRealisable())
+                        if (evenement.getProba() >= rand)
+                        {
+                            generationEvenement.afficher(evenement);
+                            break;
+                        }
+
+            evenmentIsAboutToHappen = false;
+        }
+
+        public bool essayerForcerEvenement(EvenementAbstract evenementAbstract)
+        {
+            if (evenementAbstract.isRealisable() && !evenmentIsAboutToHappen)
             {
-                if (evenement.isRealisable())
-                {
-                    if (evenement.getProba() >= rand)
-                    {
-                        generationEvenement.afficher(evenement);
-                        break;
-                    }
-                }
+                evenmentIsAboutToHappen = true;
+                generationEvenement.afficher(evenementAbstract);
+                return true;
             }
+
+            return false;
         }
-        evenmentIsAboutToHappen = false;
-    }
-    public bool essayerForcerEvenement(EvenementAbstract evenementAbstract)
-    {
-        if (evenementAbstract.isRealisable() && !evenmentIsAboutToHappen)
-        {
-            evenmentIsAboutToHappen = true;
-            generationEvenement.afficher(evenementAbstract);
-            return true;
-        }
-        return false;
     }
 }

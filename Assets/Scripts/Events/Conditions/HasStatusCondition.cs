@@ -1,16 +1,22 @@
-﻿
-public class HasStatusCondition : EvenementAbstract.Condition
-{
-    private StatusEnum status;
-    private bool shouldHave;
-    public HasStatusCondition(StatusEnum status,bool shouldHave=true)
-    {
-        this.status = status;
-        this.shouldHave = shouldHave;
-    }
+﻿using Enums;
 
-    public override bool verify()
+namespace Events.Conditions
+{
+    public class HasStatusCondition : EvenementAbstract.Condition
     {
-        return (Personnage.instance.hasStatus(status)&&shouldHave)||(!Personnage.instance.hasStatus(status)&&!shouldHave);
+        private readonly bool shouldHave;
+        private readonly StatusEnum status;
+
+        public HasStatusCondition(StatusEnum status, bool shouldHave = true)
+        {
+            this.status = status;
+            this.shouldHave = shouldHave;
+        }
+
+        public override bool verify()
+        {
+            return Personnage.Player.instance.hasStatus(status) && shouldHave ||
+                   !Personnage.Player.instance.hasStatus(status) && !shouldHave;
+        }
     }
 }

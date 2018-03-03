@@ -1,19 +1,29 @@
-﻿public class RDVAvrinStatus : StatusAbstract
+﻿using Enums;
+using Events;
+
+namespace Status
 {
-    public RDVAvrinStatus() : base(duration:Horloge.getCreneauxLeftTo(1,9), nom:"Rdv Avrin", description:"Vous avez rdv avec Avrin", id:(int)StatusEnum.RdvAvrin, addable:false)
+    public class RDVAvrinStatus : StatusAbstract
     {
-    }
-    public override string ToString()
-    {
-        return "Vous avez rdv avec Avrin dans " + this.timeLeft * 2 + " heures";
-    }
-    public override void onStart()
-    {
-        //rien
-    }
-    public override void onEnd()
-    {
-        Botin.instance.essayerForcerEvenement(new RdvAvrinEvenement());
-        base.onEnd();
+        public RDVAvrinStatus() : base(Horloge.getCreneauxLeftTo(1, 9), "Rdv Avrin", "Vous avez rdv avec Avrin",
+            (int) StatusEnum.RdvAvrin, false)
+        {
+        }
+
+        public override string ToString()
+        {
+            return "Vous avez rdv avec Avrin dans " + timeLeft * 2 + " heures";
+        }
+
+        public override void onStart()
+        {
+            //rien
+        }
+
+        public override void onEnd()
+        {
+            Botin.instance.essayerForcerEvenement(new RdvAvrinEvenement());
+            base.onEnd();
+        }
     }
 }

@@ -1,15 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class StressePerk : Perk {
-    public StressePerk() : base((int)PerksEnum.Stresse, "Stressé")
+namespace Perks
+{
+    public class StressePerk : Perk
     {
-    }
+        public StressePerk() : base((int) PerksEnum.Stresse, "Stressé")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
-
 }

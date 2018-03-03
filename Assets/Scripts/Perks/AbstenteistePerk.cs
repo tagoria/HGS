@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class AbstenteistePerk : Perk {
-    public AbstenteistePerk() : base((int)PerksEnum.Abstenteiste, "Abstenteiste")
+namespace Perks
+{
+    public class AbstenteistePerk : Perk
     {
-    }
+        public AbstenteistePerk() : base((int) PerksEnum.Abstenteiste, "Abstenteiste")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

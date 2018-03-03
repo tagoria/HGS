@@ -1,18 +1,22 @@
-﻿public class ConditionEvenementProduit : EvenementAbstract.Condition
+﻿namespace Events.Conditions
 {
-    private EventResult eventResult;
-    private bool produit;
-    private int nbCreneaux;
-    public ConditionEvenementProduit(EventResult eventResult,bool produit=true,int nbCreneaux=99999)
+    public class ConditionEvenementProduit : EvenementAbstract.Condition
     {
-        this.eventResult = eventResult;
-        this.produit = produit;
-        nbCreneaux = this.nbCreneaux;
-    }
+        private readonly EventResult eventResult;
+        private int nbCreneaux;
+        private readonly bool produit;
 
-    public override bool verify()
-    {
-        bool resultHappened = Horloge.instance.LookForResult(eventResult,nbCreneaux);
-        return resultHappened == produit;
+        public ConditionEvenementProduit(EventResult eventResult, bool produit = true, int nbCreneaux = 99999)
+        {
+            this.eventResult = eventResult;
+            this.produit = produit;
+            this.nbCreneaux = nbCreneaux;
+        }
+
+        public override bool verify()
+        {
+            var resultHappened = Horloge.instance.LookForResult(eventResult, nbCreneaux);
+            return resultHappened == produit;
+        }
     }
 }

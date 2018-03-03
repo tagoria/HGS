@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Travailler : Action
+﻿namespace Actions
 {
-    private void Awake()
+    public class Travailler : Action
     {
-        nom = "Travailler";   
-    }
-    public override void Act()
-    {
-        Personnage.instance.augmenterTravailActuel(10);
-        Personnage.instance.diminuerEnergieActuelle(10);
-        base.Act();
+        private void Awake()
+        {
+            nom = "Travailler";
+        }
+
+        public override void Act()
+        {
+            Personnage.Player.instance.augmenterTravailActuel(10);
+            Personnage.Player.instance.diminuerEnergieActuelle(10);
+            base.Act();
+        }
     }
 }

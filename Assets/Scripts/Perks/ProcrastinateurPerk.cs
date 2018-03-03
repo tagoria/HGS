@@ -1,14 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Enums;
 
-public class ProcrastinateurPerk : Perk {
-    public ProcrastinateurPerk() : base((int)PerksEnum.Procrastinateur,"Procristanateur")
+namespace Perks
+{
+    public class ProcrastinateurPerk : Perk
     {
-    }
+        public ProcrastinateurPerk() : base((int) PerksEnum.Procrastinateur, "Procristanateur")
+        {
+        }
 
-    public override void appliquer()
-    {
-        throw new System.NotImplementedException();
+        public override void appliquer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

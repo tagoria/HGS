@@ -1,53 +1,54 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Enums;
 
-public class EventResult : EqualityComparer<EventResult> 
+namespace Events
 {
-    public EventResult(EvenementsEnum evenement , int result=0)
+    public class EventResult : EqualityComparer<EventResult>
     {
-        this._creneauDebut = Horloge.instance.getCreneauActuel();
-        this.evenement=evenement;
-        this.result = result;
-    }
+        private readonly int _creneauDebut;
+        private readonly Evenement _enumEvenement;
+        private readonly int result;
 
-    public EventResult(EvenementAbstract evenementAbstract, int result=0) : this((EvenementsEnum) evenementAbstract.getId(),result)
-    {
+        public int CreneauDebut
+        {
+            get
+            {
+                return _creneauDebut;
+            }
+        }
+
+        public EventResult(Evenement enumEvenement, int result = 0)
+        {
+            _creneauDebut = Horloge.instance.getCreneauActuel();
+            _enumEvenement = enumEvenement;
+            this.result = result;
+        }
+
+        public EventResult(EvenementAbstract evenementAbstract, int result = 0) : this(
+            (Evenement) evenementAbstract.getId(), result)
+        {
+        }
+
+        public Evenement EnumEvenement
+        {
+            get { return _enumEvenement; }
+        }
+
+        public int Result
+        {
+            get { return result; }
+        }
+
         
-    }
-    private readonly EvenementsEnum evenement;
-    private readonly int result;
 
-    public EvenementsEnum Evenement
-    {
-        get
+        public override int GetHashCode(EventResult obj)
         {
-            return evenement;
+            return Result * 100000 + (int) EnumEvenement;
         }
-    }
 
-    public int Result
-    {
-        get
+        public override bool Equals(EventResult x, EventResult y)
         {
-            return result;
+            return x.EnumEvenement.Equals(y.EnumEvenement) && x.Result == y.Result;
         }
-    }
-
-    private readonly int _creneauDebut;
-
-
-    public int GetCreneauDebut()
-    {
-        return _creneauDebut;
-    }
-    public override int GetHashCode(EventResult obj)
-    {
-        return this.Result*100000 + (int)this.Evenement;
-    }
-
-    public override bool Equals(EventResult x, EventResult y)
-    {
-        return x.Evenement.Equals(y.Evenement) && x.Result == y.Result;
     }
 }
