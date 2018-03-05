@@ -74,7 +74,7 @@ public class Horloge : MonoBehaviour
         return creneauActuel;
     }
 
-    public void avancerDePlusierusCreneauxEnEtantOccupe(int creneaux)
+    public void avancerDePlusieursCreneauxEnEtantOccupe(int creneaux)
     {
         setCreneauActuel((creneauActuel + creneaux) % 12);
     }

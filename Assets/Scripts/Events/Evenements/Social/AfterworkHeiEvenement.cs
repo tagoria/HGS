@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Events
 {
-    public class SportBDSEvenement : EvenementDeuxChoix
+    public class AfterworkHeiEvenement : EvenementDeuxChoix
     {
-        public SportBDSEvenement() : base(Evenement.SportBDSEvenement, 20,
+        public AfterworkHeiEvenement() : base( Evenement.AfterworkHeiEvenement, 20,
             generateConditions(new ConditionJoueurOccupe(false)),
-            "Y aller", "Ne pas y aller", "Evenement sportif du BDS", "Le BDS organise un événement sportif",
-            generateCreneau(7), "C'était bien", "Pas le temps")
+            "Y aller", "Ne pas y aller", "Afterwork HEI", "Une association organise un AfterWork",
+            generateCreneau(10), "C'était bien", "Pas le temps")
         {
         }
 
@@ -17,7 +17,7 @@ namespace Events
         {
             Personnage.Player.instance.AugmenterSocialActuel(15);
             Personnage.Player.instance.diminuerEnergieActuelle(10);
-            Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(Random.Range(2, 4));
+            Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(Random.Range(1, 3));
         }
 
         public override void realiserChoix2()

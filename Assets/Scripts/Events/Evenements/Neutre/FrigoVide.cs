@@ -23,7 +23,7 @@ namespace Events
             Personnage.Player.instance.diminuerEnergieActuelle(25);
              addEventResultToHistorique();
             //Est -ce nécessaire d'enregistrer une telle action ? 
-            Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(1);
+            Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(1);
         }
     }
 }

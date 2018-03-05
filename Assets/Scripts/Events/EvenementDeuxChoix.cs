@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Enums;
 
 namespace Events
 {
@@ -7,6 +8,16 @@ namespace Events
         protected string choix2;
         protected string texteSiChoix1;
         protected string texteSiChoix2;
+        private Evenement pauseFalucheEvenement;
+        private ProbaEnum pauseFaluche;
+        private List<Condition> list1;
+        private string v1;
+        private string v2;
+        private string v3;
+        private string v4;
+        private List<int> list2;
+        private string v5;
+        private string v6;
 
         public EvenementDeuxChoix(Enums.Evenement id, float proba, List<Condition> conditions,
             string choix1, string choix2, string titre, string texte, List<int> creneaux,
@@ -18,6 +29,7 @@ namespace Events
             this.choix2 = choix2;
         }
 
+     
         public string getChoix2()
         {
             return choix2;

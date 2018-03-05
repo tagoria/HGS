@@ -25,6 +25,7 @@
         BalHeiEvenement = 21,
         AfterworkHeiEvenement = 22,
         Conference = 23,
-        FrigoVide = 24
+        FrigoVide = 24,
+        SoireeChezPaul = 25
     }
 }

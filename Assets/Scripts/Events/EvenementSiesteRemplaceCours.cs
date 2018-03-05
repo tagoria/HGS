@@ -14,7 +14,7 @@ namespace Events
 
         public override void realiserChoix1()
         {
-            Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(1);
+            Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(1);
         }
     }
 }

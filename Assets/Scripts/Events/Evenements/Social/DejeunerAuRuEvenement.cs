@@ -16,7 +16,7 @@ namespace Events
         public override void realiserChoix1()
         {
             Personnage.Player.instance.AugmenterSocialActuel(15);
-            Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(1);
+            Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(1);
         }
 
         public override void realiserChoix2()

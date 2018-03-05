@@ -25,6 +25,7 @@
         BalHEI = 21,
         AfterworkHei = 22,
         Conference = 60,
-        FrigoVide = 10
+        FrigoVide = 10,
+        SoireeChezPaul = 61
     }
 }

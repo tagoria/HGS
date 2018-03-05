@@ -56,7 +56,7 @@ namespace Events
                     break;
             }
 
-            Horloge.instance.avancerDePlusierusCreneauxEnEtantOccupe(duree);
+            Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(duree);
             Personnage.Player.instance.AugmenterSocialActuel((float) (Math.Pow(duree, 1.5) * 10));
             Personnage.Player.instance.diminuerEnergieActuelle(duree * 10);
         }
