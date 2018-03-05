@@ -45,7 +45,7 @@ namespace Personnage
             if (FindObjectOfType<Player>() != null)
             {
                 personnage = FindObjectOfType<Player>();
-                personnage.setPerks(listePerkPerso);
+                personnage.SetPerks(listePerkPerso);
                 personnage.SetNom(nom);
                 Destroy(gameObject);
             }

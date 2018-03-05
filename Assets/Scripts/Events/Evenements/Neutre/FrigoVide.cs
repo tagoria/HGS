@@ -20,7 +20,7 @@ namespace Events
 
         public override void realiserChoix1()
         {
-            Personnage.Player.instance.diminuerEnergieActuelle(25);
+            Personnage.Player.instance.DiminuerEnergieActuelle(25);
              addEventResultToHistorique();
             //Est -ce nécessaire d'enregistrer une telle action ? 
             Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(1);

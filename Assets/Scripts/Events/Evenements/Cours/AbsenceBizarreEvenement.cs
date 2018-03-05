@@ -19,7 +19,7 @@ namespace Events
 
         public override void realiserChoix1()
         {
-            Personnage.Player.instance.ajouterStatus(new RDVAvrinStatus());
+            Personnage.Player.instance.AjouterStatus(new RDVAvrinStatus());
         }
 
         public override void realiserChoix2()

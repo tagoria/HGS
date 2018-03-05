@@ -18,22 +18,22 @@ namespace Events
 
         public override double getProba()
         {
-            var malade = Personnage.Player.instance.hasPerk(PerksEnum.Malade) ? 1 : 0;
-            var grippe = Personnage.Player.instance.hasStatus(StatusEnum.Grippe) ? 1 : 0;
+            var malade = Personnage.Player.instance.HasPerk(PerksEnum.Malade) ? 1 : 0;
+            var grippe = Personnage.Player.instance.HasStatus(StatusEnum.Grippe) ? 1 : 0;
             return base.getProba() + 10 * malade + 15 * grippe;
         }
 
         public override void realiserChoix1()
         {
-            Personnage.Player.instance.ajouterStatus(new RdvMedecinStatus(3));
-            Personnage.Player.instance.ajouterStatus(new GrippeStatus());
+            Personnage.Player.instance.AjouterStatus(new RdvMedecinStatus(3));
+            Personnage.Player.instance.AjouterStatus(new GrippeStatus());
             Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
             Horloge.instance.addToHistorique(new EventResult(this, RDV_PRIS));
         }
 
         public override void realiserChoix2()
         {
-            Personnage.Player.instance.ajouterStatus(new GrippeStatus());
+            Personnage.Player.instance.AjouterStatus(new GrippeStatus());
             Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
             Horloge.instance.addToHistorique(new EventResult(this, PAS_DE_RDV));
         }

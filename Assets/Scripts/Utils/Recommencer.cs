@@ -8,7 +8,7 @@ namespace Utils
     {
         public void recommencer()
         {
-            Personnage.Player.instance.recommencer();
+            Personnage.Player.instance.Recommencer();
             SceneManager.LoadSceneAsync((int) NumeroSceneEnum.EcranPrincipal, LoadSceneMode.Single);
         }
     }

@@ -9,8 +9,8 @@
 
         public override void Act()
         {
-            Personnage.Player.instance.augmenterTravailActuel(10);
-            Personnage.Player.instance.diminuerEnergieActuelle(10);
+            Personnage.Player.instance.AugmenterTravailActuel(10);
+            Personnage.Player.instance.DiminuerEnergieActuelle(10);
             base.Act();
         }
     }

@@ -16,8 +16,8 @@ namespace Events
 
         public override void realiserChoix1()
         {
-            Personnage.Player.instance.augmenterTravailActuel(20);
-            Personnage.Player.instance.diminuerEnergieActuelle(10);
+            Personnage.Player.instance.AugmenterTravailActuel(20);
+            Personnage.Player.instance.DiminuerEnergieActuelle(10);
             Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 2);
             Horloge.instance.addToHistorique(new EventResult(this, COURS_ASSISTE));
         }

@@ -21,7 +21,7 @@ namespace Events
 
         public override void realiserChoix2()
         {
-            Personnage.Player.instance.diminuerSocialActuel(5);
+            Personnage.Player.instance.DiminuerSocialActuel(5);
         }
     }
 }

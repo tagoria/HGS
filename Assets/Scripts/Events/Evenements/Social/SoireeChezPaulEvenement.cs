@@ -15,20 +15,21 @@ public class SoireeChezPaulEvenement : EvenementDeuxChoix {
 
     public override double getProba()
     {
-        double add = Personnage.Player.instance.hasPerk(PerksEnum.Fetard) ? 10 : 0;
-        add += Personnage.Player.instance.hasPerk(PerksEnum.Geek) ? -5 : 0;
-        add += Personnage.Player.instance.hasPerk(PerksEnum.Stresse) ? -5 : 0;
+        double add = Personnage.Player.instance.HasPerk(PerksEnum.Fetard) ? 10 : 0;
+        add += Personnage.Player.instance.HasPerk(PerksEnum.Geek) ? -5 : 0;
+        add += Personnage.Player.instance.HasPerk(PerksEnum.Stresse) ? -5 : 0;
         return base.getProba() + add;
     }
 
     private int TempsAleatoire()
     {
         int a = 0;
-        if (Personnage.Player.instance.hasPerk(PerksEnum.Fetard))
-        {// J'ai hésité à mettre un random, pour finir, je gère selon l'énergie du joueur
-            if ((int)Personnage.Player.instance.getEnergieActuelle() <= 20) {  }
-            if ((int)Personnage.Player.instance.getEnergieActuelle() >= 20) { a = a++; }
-            if ((int)Personnage.Player.instance.getEnergieActuelle() >= 50) { a = a++; }
+        if (Personnage.Player.instance.HasPerk(PerksEnum.Fetard))
+        {
+            // J'ai hésité à mettre un random, pour finir, je gère selon l'énergie du joueur
+            if ((int)Personnage.Player.instance.GetEnergieActuelle() <= 20) {  }
+            if ((int)Personnage.Player.instance.GetEnergieActuelle() >= 20) {  a++; }
+            if ((int)Personnage.Player.instance.GetEnergieActuelle() >= 50) {  a++; }
             }
         return a;
     }
@@ -37,13 +38,13 @@ public class SoireeChezPaulEvenement : EvenementDeuxChoix {
     public override void realiserChoix1()
     {
         Personnage.Player.instance.AugmenterSocialActuel(30);
-        Personnage.Player.instance.diminuerEnergieActuelle(10);
-        Personnage.Player.instance.diminuerTravailActuel(5);
+        Personnage.Player.instance.DiminuerEnergieActuelle(10);
+        Personnage.Player.instance.DiminuerTravailActuel(5);
         Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(2+TempsAleatoire());
     }
 
     public override void realiserChoix2()
     {
-        Personnage.Player.instance.diminuerSocialActuel(5);
+        Personnage.Player.instance.DiminuerSocialActuel(5);
     }
 }

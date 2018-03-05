@@ -50,31 +50,31 @@ namespace Personnage
         {
         }
 
-        internal void setPerks(Dictionary<int, Perk> perks)
+        internal void SetPerks(Dictionary<int, Perk> perks)
         {
             listePerk = perks;
-            appliquerPerks();
+            AppliquerPerks();
         }
 
-        public bool hasPerk(PerksEnum perk)
+        public bool HasPerk(PerksEnum perk)
         {
             return listePerk.ContainsKey((int) perk);
         }
 
-        public void recommencer()
+        public void Recommencer()
         {
             energieActuelle = energieDep;
             socialActuel = socialDep;
             travailActuel = travailDep;
-            remplirBarre();
+            RemplirBarres();
         }
 
-        internal bool hasStatus(StatusEnum status)
+        internal bool HasStatus(StatusEnum status)
         {
             return listeStatus.ContainsKey((int) status);
         }
 
-        public void ajouterStatus(StatusAbstract status)
+        public void AjouterStatus(StatusAbstract status)
         {
             if (listeStatus.ContainsKey(status.id))
             {
@@ -89,7 +89,7 @@ namespace Personnage
             StatusHolder.instance.afficherStatus(listeStatus);
         }
 
-        public void remplirBarre()
+        public void RemplirBarres()
         {
             barreEnergie.valeurCap = maxEnergiePerso;
             barresocial.valeurCap = maxsocialPerso;
@@ -99,7 +99,7 @@ namespace Personnage
             barreTravail.Valeur=travailActuel;
         }
 
-        private void appliquerPerks()
+        private void AppliquerPerks()
         {
             maxEnergiePerso = maxEnergieBase;
             maxsocialPerso = maxsocialBase;
@@ -116,10 +116,10 @@ namespace Personnage
             energieActuelle = energieDep;
             socialActuel = socialDep;
             travailActuel = travailDep;
-            remplirBarre();
+            RemplirBarres();
         }
 
-        internal void affecterStatus(int nbCréneaux)
+        internal void AffecterStatus(int nbCréneaux)
         {
             if (listeStatus == null || listeStatus.Count == 0) return;
             for (var i = 0; i < nbCréneaux; i++)
@@ -131,24 +131,24 @@ namespace Personnage
             StatusHolder.instance.afficherStatus(listeStatus);
         }
 
-        public void removeStatus(int status)
+        public void RemoveStatus(int status)
         {
             listeStatus.Remove(status);
             StatusHolder.instance.afficherStatus(listeStatus);
         }
 
 
-        public float getEnergieActuelle()
+        public float GetEnergieActuelle()
         {
             return energieActuelle;
         }
 
-        public float getSocialActuel()
+        public float GetSocialActuel()
         {
             return socialActuel;
         }
 
-        public float getTravailActuel()
+        public float GetTravailActuel()
         {
             return travailActuel;
         }
@@ -171,7 +171,7 @@ namespace Personnage
             barresocial.Valeur=socialActuel;
         }
 
-        public void augmenterTravailActuel(float f)
+        public void AugmenterTravailActuel(float f)
         {
             if (travailActuel + f > maxTravailPerso)
                 travailActuel = maxTravailPerso;
@@ -180,7 +180,7 @@ namespace Personnage
             barreTravail.Valeur=travailActuel;
         }
 
-        public void diminuerEnergieActuelle(float f)
+        public void DiminuerEnergieActuelle(float f)
         {
             if (energieActuelle - f <= 0)
                 GameOver();
@@ -189,7 +189,7 @@ namespace Personnage
             barreEnergie.Valeur=energieActuelle;
         }
 
-        public void diminuerSocialActuel(float f)
+        public void DiminuerSocialActuel(float f)
         {
             if (socialActuel - f <= 0)
                 GameOver();
@@ -198,7 +198,7 @@ namespace Personnage
             barresocial.Valeur=socialActuel;
         }
 
-        public void diminuerTravailActuel(float f)
+        public void DiminuerTravailActuel(float f)
         {
             if (travailActuel - f <= 0)
                 GameOver();

@@ -45,10 +45,19 @@ namespace Events
         {
             return Result * 100000 + (int) EnumEvenement;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj.GetType() != typeof(EventResult))
+            {
+                return false;
+            }
+            EventResult eventResult = (EventResult)obj;
+            return Equals(eventResult, this);
+        }
 
         public override bool Equals(EventResult x, EventResult y)
         {
-            return x.EnumEvenement.Equals(y.EnumEvenement) && x.Result == y.Result;
+            return x.EnumEvenement==y.EnumEvenement && x.Result == y.Result;
         }
     }
 }

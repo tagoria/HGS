@@ -25,13 +25,13 @@ namespace Events
         public override void realiserChoix1()
         {
             Horloge.instance.addToHistorique(SoireeAssistee);
-            var duree = Random.Range(Personnage.Player.instance.hasPerk(PerksEnum.Fetard) ? 4 : 2, 7);
-            if (Personnage.Player.instance.getEnergieActuelle() <= duree * 10)
+            var duree = Random.Range(Personnage.Player.instance.HasPerk(PerksEnum.Fetard) ? 4 : 2, 7);
+            if (Personnage.Player.instance.GetEnergieActuelle() <= duree * 10)
             {
                 texteSiChoix1 = "Vous vous réveillez à 12 sans aucun souvenir de la veille";
                 Horloge.instance.setCreneauActuel(6);
-                Personnage.Player.instance.diminuerEnergieActuelle(
-                    Personnage.Player.instance.getEnergieActuelle() - 10);
+                Personnage.Player.instance.DiminuerEnergieActuelle(
+                    Personnage.Player.instance.GetEnergieActuelle() - 10);
                 return;
             }
 
@@ -58,13 +58,13 @@ namespace Events
 
             Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(duree);
             Personnage.Player.instance.AugmenterSocialActuel((float) (Math.Pow(duree, 1.5) * 10));
-            Personnage.Player.instance.diminuerEnergieActuelle(duree * 10);
+            Personnage.Player.instance.DiminuerEnergieActuelle(duree * 10);
         }
 
         public override void realiserChoix2()
         {
             Horloge.instance.addToHistorique(SoireeSkippee);
-            Personnage.Player.instance.diminuerSocialActuel(10);
+            Personnage.Player.instance.DiminuerSocialActuel(10);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Status
 
         public virtual void onEnd()
         {
-            Personnage.Player.instance.removeStatus(id);
+            Personnage.Player.instance.RemoveStatus(id);
         }
 
         public virtual void onTimePass()

@@ -16,13 +16,13 @@ namespace Events
         public override void realiserChoix1()
         {
             Personnage.Player.instance.AugmenterSocialActuel(15);
-            Personnage.Player.instance.diminuerEnergieActuelle(10);
+            Personnage.Player.instance.DiminuerEnergieActuelle(10);
             Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(Random.Range(2, 4));
         }
 
         public override void realiserChoix2()
         {
-            Personnage.Player.instance.diminuerSocialActuel(5);
+            Personnage.Player.instance.DiminuerSocialActuel(5);
         }
     }
 }

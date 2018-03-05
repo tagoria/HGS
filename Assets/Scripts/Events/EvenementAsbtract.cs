@@ -25,10 +25,17 @@ namespace Events
         private readonly string texte;
 
         private readonly string titre;
+        private static List<Condition> conditionsDejaInstanciees;
 
         public EvenementAbstract(Evenement id, float proba, List<Condition> conditions, string choix1, string titre,
             string texte, List<int> creneaux) //Méthode pour créer un événement
+        
         {
+            if (conditionsDejaInstanciees == null)
+            {
+                conditionsDejaInstanciees = new List<Condition>();
+                conditionsDejaInstanciees.Add(new Conditions.ConditionJoueurOccupe(false));
+            }
             this.id = id;
             nbEvenement++;
             this.proba = proba;
@@ -116,7 +123,21 @@ namespace Events
         protected static List<Condition> generateConditions(params Condition[] conditions)
         {
             var liste = new List<Condition>();
-            foreach (var condition in conditions) liste.Add(condition);
+            foreach (var condition in conditions)
+            {
+                var index = conditionsDejaInstanciees.LastIndexOf(condition);
+                if (index==-1)
+                {
+                    Debug.Log("condition not found " + condition.ToString());
+                    liste.Add(condition);
+                    conditionsDejaInstanciees.Add(condition);
+                }
+                else
+                {
+                    Debug.Log("condition found " + condition.ToString());
+                    liste.Add(conditionsDejaInstanciees[index]);
+                }
+            }
             return liste;
         }
 
@@ -139,7 +160,6 @@ namespace Events
                 {
                     var evenementAbstract = (EvenementAbstract) constructorInfo.Invoke(empTypes);
                     listEvenementAbstracts.Add(evenementAbstract);
-                    Debug.Log(evenementAbstract.getTitre());
                 }
             }
 

@@ -20,13 +20,13 @@ namespace Events
         public override void realiserChoix1()
         {
             Horloge.instance.setCreneauActuel(8);
-            Personnage.Player.instance.diminuerEnergieActuelle(15);
-            Personnage.Player.instance.augmenterTravailActuel(10);
+            Personnage.Player.instance.DiminuerEnergieActuelle(15);
+            Personnage.Player.instance.AugmenterTravailActuel(10);
         }
 
         public override void realiserChoix2()
         {
-            Personnage.Player.instance.diminuerTravailActuel(5);
+            Personnage.Player.instance.DiminuerTravailActuel(5);
         }
     }
 }

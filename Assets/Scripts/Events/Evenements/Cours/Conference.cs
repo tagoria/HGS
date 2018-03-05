@@ -22,7 +22,7 @@ namespace Events
         public override void realiserChoix1()
         {
             Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(1);
-            Personnage.Player.instance.diminuerEnergieActuelle(10);
+            Personnage.Player.instance.DiminuerEnergieActuelle(10);
             addResultatToHistorique(CONFERENCE_ASSISTE);
         }
 

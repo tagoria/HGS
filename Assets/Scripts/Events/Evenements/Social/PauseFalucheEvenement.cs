@@ -15,23 +15,23 @@ namespace Events
 
         public override double getProba()
         {
-            double add = Personnage.Player.instance.hasPerk(PerksEnum.Fetard) ? 10 : 0;
-            add += Personnage.Player.instance.hasPerk(PerksEnum.Geek) ? -5 : 0;
-            add += Personnage.Player.instance.hasPerk(PerksEnum.Stresse) ? -5 : 0;
+            double add = Personnage.Player.instance.HasPerk(PerksEnum.Fetard) ? 10 : 0;
+            add += Personnage.Player.instance.HasPerk(PerksEnum.Geek) ? -5 : 0;
+            add += Personnage.Player.instance.HasPerk(PerksEnum.Stresse) ? -5 : 0;
             return base.getProba() + add;
         }
 
         public override void realiserChoix1()
         {
             Personnage.Player.instance.AugmenterSocialActuel(20);
-            Personnage.Player.instance.diminuerEnergieActuelle(5);
-            Personnage.Player.instance.diminuerTravailActuel(5);
+            Personnage.Player.instance.DiminuerEnergieActuelle(5);
+            Personnage.Player.instance.DiminuerTravailActuel(5);
             Horloge.instance.avancerDePlusieursCreneauxEnEtantOccupe(1);
         }
 
         public override void realiserChoix2()
         {
-            Personnage.Player.instance.diminuerSocialActuel(5);
+            Personnage.Player.instance.DiminuerSocialActuel(5);
         }
     }
 }

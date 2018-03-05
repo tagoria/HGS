@@ -18,7 +18,7 @@ namespace Events
 
         public override void realiserChoix1()
         {
-            Personnage.Player.instance.ajouterStatus(new StatusJourFerie());
+            Personnage.Player.instance.AjouterStatus(new StatusJourFerie());
             addEventResultToHistorique();
         }
     }
