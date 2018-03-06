@@ -9,14 +9,14 @@ using Utils;
 
 namespace Personnage
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour , ISauvegardable
     {
         internal static Player instance;
         public Barre barreEnergie;
         public Barre barresocial;
         public Barre barreTravail;
         private float energieActuelle;
-        internal float energieDep;
+        internal static float energieDep;
         public float energieDepBase;
 
         internal Dictionary<int, Perk> listePerk;
@@ -33,16 +33,76 @@ namespace Personnage
         //Représente le fait que le personnage est occupé où non ,influe sur les évènements en faisant raté des RDV par exemple
         public bool occuppe;
         private float socialActuel;
-        internal float socialDep;
+        internal static float socialDep;
         public float socialDepBase;
         private float travailActuel;
-        internal float travailDep;
-        public float travailDepBase;
+        internal static float travailDep;
+        public  float travailDepBase;
+
+        private const string  energieActuelleKey="nrjAct";
+        private const string maxEnergieKey = "nrjMax";
+        private const string maxSocialKey = "socMax";
+        private const string maxTravailKey= "trvMax";
+        private const string socialActuelKey = "socAct";
+        private const string  travailActuelKey= "trvAct";
+        private const string savedOnce = "savedPlayerOnce";
+        private const string perksKey = "perks";
+        public void SaveState()
+        {
+            Debug.Log("saving important values of player");
+            PlayerPrefs.SetFloat(energieActuelleKey,energieActuelle);
+            PlayerPrefs.SetFloat(socialActuelKey, socialActuel);
+            PlayerPrefs.SetFloat(travailActuelKey, travailActuel);
+            PlayerPrefs.SetFloat(maxEnergieKey, maxEnergiePerso);
+            PlayerPrefs.SetFloat(maxSocialKey, maxsocialPerso);
+            PlayerPrefs.SetFloat(maxTravailKey, maxTravailPerso);
+            PlayerPrefs.SetInt(savedOnce, 1);
+            string listePerkAsString = "";
+            foreach(var perk in listePerk.Keys)
+            {
+                listePerkAsString += perk+",";
+            }
+            PlayerPrefs.SetString(perksKey,listePerkAsString);
+            PlayerPrefs.Save();
+
+        }
+
+        public void LoadState()
+        {
+
+            Debug.Log("loading previous save");
+            listePerk = new Dictionary<int, Perk>();
+            string listePerkAsString = PlayerPrefs.GetString(perksKey);
+            string[] perksNum =  listePerkAsString.Split(',');
+            foreach(var perkNum in perksNum)
+            {
+                if (perkNum.Length != 0)
+                {
+                    listePerk.Add(int.Parse( perkNum),Perk.turnIntoPerk((PerksEnum) int.Parse(perkNum)));
+                }
+            }
+            energieActuelle = PlayerPrefs.GetFloat(energieActuelleKey);
+            socialActuel = PlayerPrefs.GetFloat(socialActuelKey);
+            travailActuel =  PlayerPrefs.GetFloat(travailActuelKey);
+            maxEnergiePerso = PlayerPrefs.GetFloat(maxEnergieKey);
+            maxsocialPerso =  PlayerPrefs.GetFloat(maxSocialKey);
+            maxTravailPerso = PlayerPrefs.GetFloat(maxTravailKey);
+
+            RemplirBarres();
+        }
 
         private void Awake()
         {
             listeStatus = new Dictionary<int, StatusAbstract>();
             instance = this;
+            if (PlayerPrefs.HasKey(savedOnce))
+            {
+                this.LoadState();
+            }
+        }
+        private void OnApplicationQuit()
+        {
+            SaveState();
         }
 
         // Use this for initialization
@@ -216,5 +276,6 @@ namespace Personnage
         {
             this.nom = nom;
         }
+
     }
 }

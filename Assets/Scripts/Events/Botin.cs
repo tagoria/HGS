@@ -65,6 +65,7 @@ namespace Events
                         if (evenement.getProba() >= rand)
                         {
                             generationEvenement.afficher(evenement);
+                            Debug.Log("réalisation événement : " + evenement.getTitre() + " sur le créneau : " + horloge.getCreneauActuel());
                             break;
                         }
 

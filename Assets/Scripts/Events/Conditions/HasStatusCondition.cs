@@ -15,8 +15,7 @@ namespace Events.Conditions
 
         public override bool verify()
         {
-            return Personnage.Player.instance.HasStatus(status) && shouldHave ||
-                   !Personnage.Player.instance.HasStatus(status) && !shouldHave;
+            return Personnage.Player.instance.HasStatus(status) == shouldHave;
         }
         public override bool Equals(object obj)
         {

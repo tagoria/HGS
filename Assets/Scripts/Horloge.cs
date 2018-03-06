@@ -23,6 +23,7 @@ public class Horloge : MonoBehaviour
     {
         nbJoursEcoules = 0;
         crenauxEcoules = 0;
+        creneauActuel = 0;
         instance = this;
         historique = new List<EventResult>();
         historique.Add(new EventResult(Enums.Evenement.EvenementCanette,0));

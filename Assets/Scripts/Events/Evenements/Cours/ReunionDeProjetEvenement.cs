@@ -11,7 +11,8 @@ namespace Events
         public ReunionDeProjetEvenement() : base(Evenement.ReunionDeProjetEvenement, 10, generateConditions(
                 new HasStatusCondition(StatusEnum.JourFerie, false),
                 new ConditionEvenementProduit(new EventResult(Evenement.Conference,
-                    Conference.CONFERENCE_ASSISTE)))
+                    Conference.CONFERENCE_ASSISTE))
+            , new ConditionJoueurOccupe(false))
             , "y aller", "ne pas y aller", "réunion projet",
             "Vous avez une réunion de projet prévu maintenant", generateCreneau(9), "C'était une bonne réunion",
             "Pas aujourd'hui")

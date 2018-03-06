@@ -7,7 +7,7 @@ namespace Events
 {
     public class FrigoVide : EvenementUnSeulChoix
     {
-        public static readonly int FRIGO_REMPLI = 1;
+        public static readonly int FRIGO_REMPLI = 0;
 
         public FrigoVide() : base( Evenement.FrigoVide, (int) ProbaEnum.FrigoVide,
             generateConditions(new HasStatusCondition(StatusEnum.JourFerie, false)),

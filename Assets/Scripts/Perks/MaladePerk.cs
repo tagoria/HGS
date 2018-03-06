@@ -11,7 +11,7 @@ namespace Perks
 
         public override void appliquer()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

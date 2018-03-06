@@ -128,13 +128,11 @@ namespace Events
                 var index = conditionsDejaInstanciees.LastIndexOf(condition);
                 if (index==-1)
                 {
-                    Debug.Log("condition not found " + condition.ToString());
                     liste.Add(condition);
                     conditionsDejaInstanciees.Add(condition);
                 }
                 else
                 {
-                    Debug.Log("condition found " + condition.ToString());
                     liste.Add(conditionsDejaInstanciees[index]);
                 }
             }

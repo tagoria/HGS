@@ -6,8 +6,8 @@ namespace Events
     public class DejeunerAuRuEvenement : EvenementDeuxChoix
     {
         public DejeunerAuRuEvenement() : base(Evenement.DejeunerAuRuEvenement, 15, generateConditions(
-                new ConditionEvenementProduit(
-                    new EventResult(Evenement.EvenementCoursMatin, EvenementCoursMatin.COURS_ASSISTE), true, 1)),
+                new ConditionEvenementProduit(new EventResult(Evenement.EvenementCoursMatin, EvenementCoursMatin.COURS_ASSISTE), true, 1)
+            ,new ConditionJoueurOccupe(false)),
             "Y aller", "Ne pas y aller", "Dejeuner au RU", "aller déjeuner au RU?", generateCreneau(6),
             "C'était bon", "Pas le temps")
         {
