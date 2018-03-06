@@ -29,7 +29,12 @@ namespace Events
             this.choix2 = choix2;
         }
 
-     
+        protected EvenementDeuxChoix(Evenement id, ProbaEnum proba, List<Condition> conditions, string choix1, string choix2, string titre, string texte, List<int> creneaux, string texteSiChoix1, string texteSiChoix2) :this(id, (int)proba, conditions, choix1, choix2, titre, texte, creneaux, texteSiChoix1, texteSiChoix2)
+        {
+            
+        }
+
+
         public string getChoix2()
         {
             return choix2;

@@ -59,5 +59,13 @@ namespace Events
         {
             return x.EnumEvenement==y.EnumEvenement && x.Result == y.Result;
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -527389474;
+            hashCode = hashCode * -1521134295 + _enumEvenement.GetHashCode();
+            hashCode = hashCode * -1521134295 + result.GetHashCode();
+            return hashCode;
+        }
     }
 }

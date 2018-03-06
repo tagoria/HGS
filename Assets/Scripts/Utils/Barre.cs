@@ -20,7 +20,7 @@ namespace Utils
             set
             {
                 valeur = value;
-                changeSize();
+                ChangeSize();
             }
         }
 
@@ -30,7 +30,7 @@ namespace Utils
         }
 
 
-        private void changeSize()
+        private void ChangeSize()
         {
             transform.localScale = new Vector3(maxScale.x * Valeur / valeurCap, maxScale.y, maxScale.z);
         }

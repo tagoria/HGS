@@ -18,9 +18,9 @@ namespace Events
             instance = this;
         }
 
-        public void ajouterUnEvenementSurToutSesCreneaux(EvenementAbstract evenement)
+        public void AjouterUnEvenementSurToutSesCreneaux(EvenementAbstract evenement)
         {
-            foreach (var creneau in evenement.getCreneaux()) ajouterEvenementSurUnCreneau(evenement, creneau);
+            foreach (var creneau in evenement.getCreneaux()) AjouterEvenementSurUnCreneau(evenement, creneau);
         }
 
         private void Start()
@@ -29,24 +29,24 @@ namespace Events
             cases = new List<List<EvenementAbstract>>();
             for (var i = 0; i < 12; i++) cases.Add(new List<EvenementAbstract>());
             var evenements = EvenementAbstract.loopThrough();
-            foreach (var evenement in evenements) ajouterUnEvenementSurToutSesCreneaux(evenement);
+            foreach (var evenement in evenements) AjouterUnEvenementSurToutSesCreneaux(evenement);
             horloge = FindObjectOfType<Horloge>();
             generationEvenement = FindObjectOfType<GenerationEvenement>();
         }
 
-        public void supprimerEvenementSurToutLesCreneaux(EvenementAbstract evenementAbstract)
+        public void SupprimerEvenementSurToutLesCreneaux(EvenementAbstract evenementAbstract)
         {
             foreach (var liste in cases)
                 if (liste.Contains(evenementAbstract))
                     liste.Remove(evenementAbstract);
         }
 
-        public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract)
+        public void AjouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract)
         {
-            ajouterEvenementSurUnCreneau(evenementAbstract, evenementAbstract.getCreneaux()[0]);
+            AjouterEvenementSurUnCreneau(evenementAbstract, evenementAbstract.getCreneaux()[0]);
         }
 
-        public void ajouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract, int creneau)
+        public void AjouterEvenementSurUnCreneau(EvenementAbstract evenementAbstract, int creneau)
         {
             cases[creneau].Add(evenementAbstract);
         }
@@ -54,7 +54,7 @@ namespace Events
         /**
      * détermine si un évenement devrait se réaliser sur le prochaine créneau et le réalise si oui
      * */
-        public void changerDeCreneau()
+        public void ChangerDeCreneau()
         {
             caseActuelle = horloge.getCreneauActuel();
             cases[caseActuelle].Sort();

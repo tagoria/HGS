@@ -26,6 +26,8 @@
         AfterworkHeiEvenement = 22,
         Conference = 23,
         FrigoVide = 24,
-        SoireeChezPaul = 25
+        SoireeChezPaul = 25,
+        TropheeSportifEvenement,
+        TournoisSportifEvenement
     }
 }

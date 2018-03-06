@@ -18,7 +18,7 @@ namespace Events
 
         public override void realiserChoix1()
         {
-            Botin.instance.supprimerEvenementSurToutLesCreneaux(this);
+            Botin.instance.SupprimerEvenementSurToutLesCreneaux(this);
             Personnage.Player.instance.RemoveStatus((int) StatusEnum.Grippe);
             Horloge.instance.setCreneauActuel(Horloge.instance.getCreneauActuel() + 1);
             addEventResultToHistorique();

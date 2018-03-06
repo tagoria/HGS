@@ -114,7 +114,7 @@ public class Horloge : MonoBehaviour
         creneauActuel = creneauActuel % 12;
         texteHorloge.text = creneauActuel * 2 + ":00";
         Personnage.Player.instance.AffecterStatus(1);
-        botin.changerDeCreneau();
+        botin.ChangerDeCreneau();
     }
 
     public static int getCreneauxLeftTo(int daysToWait, int creneauWanted)
