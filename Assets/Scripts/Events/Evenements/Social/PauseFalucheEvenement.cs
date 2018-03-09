@@ -15,9 +15,9 @@ namespace Events
 
         public override double getProba()
         {
-            double add = Personnage.Player.instance.HasPerk(PerksEnum.Fetard) ? 10 : 0;
-            add += Personnage.Player.instance.HasPerk(PerksEnum.Geek) ? -5 : 0;
-            add += Personnage.Player.instance.HasPerk(PerksEnum.Stresse) ? -5 : 0;
+            double add = Personnage.Player.instance.HasPerk(PerksEnum.FetardPerk) ? 10 : 0;
+            add += Personnage.Player.instance.HasPerk(PerksEnum.GeekPerk) ? -5 : 0;
+            add += Personnage.Player.instance.HasPerk(PerksEnum.StressePerk) ? -5 : 0;
             return base.getProba() + add;
         }
 

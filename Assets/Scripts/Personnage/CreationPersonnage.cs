@@ -25,18 +25,18 @@ namespace Personnage
         {
             listePerkPerso = new Dictionary<int, Perk>();
             listePerkComplete = new Dictionary<int, Perk>();
-            listePerkComplete.Add((int) PerksEnum.Abstenteiste, new AbstenteistePerk());
-            listePerkComplete.Add((int) PerksEnum.Dormeur, new DormeurPerk());
-            listePerkComplete.Add((int) PerksEnum.Fetard, new FetardPerk());
-            listePerkComplete.Add((int) PerksEnum.Geek, new GeekPerk());
-            listePerkComplete.Add((int) PerksEnum.Glouton, new GloutonPerk());
-            listePerkComplete.Add((int) PerksEnum.Insomniaque, new InsomniaquePerk());
-            listePerkComplete.Add((int) PerksEnum.Intello, new IntelloPerk());
-            listePerkComplete.Add((int) PerksEnum.Malade, new MaladePerk());
-            listePerkComplete.Add((int) PerksEnum.Procrastinateur, new ProcrastinateurPerk());
-            listePerkComplete.Add((int) PerksEnum.Redoublant, new RedoublantPerk());
-            listePerkComplete.Add((int) PerksEnum.Sportif, new SportifPerk());
-            listePerkComplete.Add((int) PerksEnum.Stresse, new StressePerk());
+            listePerkComplete.Add((int) PerksEnum.AbstenteistePerk, new AbstenteistePerk());
+            listePerkComplete.Add((int) PerksEnum.DormeurPerk, new DormeurPerk());
+            listePerkComplete.Add((int) PerksEnum.FetardPerk, new FetardPerk());
+            listePerkComplete.Add((int) PerksEnum.GeekPerk, new GeekPerk());
+            listePerkComplete.Add((int) PerksEnum.GloutonPerk, new GloutonPerk());
+            listePerkComplete.Add((int) PerksEnum.InsomniaquePerk, new InsomniaquePerk());
+            listePerkComplete.Add((int) PerksEnum.IntelloPerk, new IntelloPerk());
+            listePerkComplete.Add((int) PerksEnum.MaladePerk, new MaladePerk());
+            listePerkComplete.Add((int) PerksEnum.ProcrastinateurPerk, new ProcrastinateurPerk());
+            listePerkComplete.Add((int) PerksEnum.RedoublantPerk, new RedoublantPerk());
+            listePerkComplete.Add((int) PerksEnum.SportifPerk, new SportifPerk());
+            listePerkComplete.Add((int) PerksEnum.StressePerk, new StressePerk());
             afficherPerks(listePerkComplete);
         }
 

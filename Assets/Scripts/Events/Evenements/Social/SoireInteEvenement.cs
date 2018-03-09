@@ -25,7 +25,7 @@ namespace Events
         public override void realiserChoix1()
         {
             Horloge.instance.addToHistorique(SoireeAssistee);
-            var duree = Random.Range(Personnage.Player.instance.HasPerk(PerksEnum.Fetard) ? 4 : 2, 7);
+            var duree = Random.Range(Personnage.Player.instance.HasPerk(PerksEnum.FetardPerk) ? 4 : 2, 7);
             if (Personnage.Player.instance.GetEnergieActuelle() <= duree * 10)
             {
                 texteSiChoix1 = "Vous vous réveillez à 12 sans aucun souvenir de la veille";

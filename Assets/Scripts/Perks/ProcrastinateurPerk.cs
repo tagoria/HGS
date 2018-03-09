@@ -5,7 +5,7 @@ namespace Perks
 {
     public class ProcrastinateurPerk : Perk
     {
-        public ProcrastinateurPerk() : base((int) PerksEnum.Procrastinateur, "Procristanateur")
+        public ProcrastinateurPerk() : base((int) PerksEnum.ProcrastinateurPerk, "Procristanateur")
         {
         }
 

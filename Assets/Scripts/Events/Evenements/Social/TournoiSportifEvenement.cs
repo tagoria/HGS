@@ -8,7 +8,7 @@ namespace Events
     {
         
         public TournoiSportifEvenement() : base(id : Evenement.TournoisSportifEvenement, proba : ProbaEnum.TournoiSportif,
-            conditions : generateConditions(new HasPerkCondition(PerksEnum.Sportif)), choix1 : "y aller", choix2 : "ne pas y aller",
+            conditions : generateConditions(new HasPerkCondition(PerksEnum.SportifPerk)), choix1 : "y aller", choix2 : "ne pas y aller",
             titre : "Tournoi sportif HEI", texte : "Votre équipe a besoin de vous pour gagner ce tournoi",
             creneaux : generateCreneau(7), texteSiChoix1 : "Y aller", texteSiChoix2 : "Les abandonner")
         {

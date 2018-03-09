@@ -18,7 +18,7 @@ namespace Events
 
         public override double getProba()
         {
-            var malade = Personnage.Player.instance.HasPerk(PerksEnum.Malade) ? 1 : 0;
+            var malade = Personnage.Player.instance.HasPerk(PerksEnum.MaladePerk) ? 1 : 0;
             var grippe = Personnage.Player.instance.HasStatus(StatusEnum.Grippe) ? 1 : 0;
             return base.getProba() + 10 * malade + 15 * grippe;
         }

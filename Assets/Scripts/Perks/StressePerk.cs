@@ -5,7 +5,7 @@ namespace Perks
 {
     public class StressePerk : Perk
     {
-        public StressePerk() : base((int) PerksEnum.Stresse, "Stressé")
+        public StressePerk() : base((int) PerksEnum.StressePerk, "Stressé")
         {
         }
 

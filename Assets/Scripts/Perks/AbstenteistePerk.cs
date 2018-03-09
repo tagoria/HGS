@@ -5,7 +5,7 @@ namespace Perks
 {
     public class AbstenteistePerk : Perk
     {
-        public AbstenteistePerk() : base((int) PerksEnum.Abstenteiste, "Abstenteiste")
+        public AbstenteistePerk() : base((int) PerksEnum.AbstenteistePerk, "Abstenteiste")
         {
         }
 

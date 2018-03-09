@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace Perks
 {
@@ -33,9 +34,9 @@ namespace Perks
         {
             perksType = new Dictionary<PerksEnum, Type>();
             var valeurs = Enum.GetValues(typeof(PerksEnum));
-            foreach (var valeur in (valeurs))
+            foreach (PerksEnum valeur in (valeurs))
             {
-                perksType.Add((PerksEnum) valeur,TurnIntoType((PerksEnum) valeur));
+                perksType.Add( valeur,TurnIntoType(valeur));
             }
         }
 

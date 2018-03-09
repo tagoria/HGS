@@ -2,17 +2,17 @@
 {
     public enum PerksEnum
     {
-        Abstenteiste = 1,
-        Dormeur = 2,
-        Fetard = 3,
-        Geek = 4,
-        Glouton = 5,
-        Insomniaque = 6,
-        Intello = 7,
-        Malade = 8,
-        Procrastinateur = 9,
-        Redoublant = 10,
-        Sportif = 11,
-        Stresse = 12
+        AbstenteistePerk = 1,
+        DormeurPerk = 2,
+        FetardPerk = 3,
+        GeekPerk = 4,
+        GloutonPerk = 5,
+        InsomniaquePerk = 6,
+        IntelloPerk = 7,
+        MaladePerk = 8,
+        ProcrastinateurPerk = 9,
+        RedoublantPerk = 10,
+        SportifPerk = 11,
+        StressePerk = 12
     }
 }

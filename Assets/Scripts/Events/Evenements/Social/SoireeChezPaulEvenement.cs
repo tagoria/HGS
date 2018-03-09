@@ -19,16 +19,16 @@ namespace Events
 
         public override double getProba()
         {
-            double add = Personnage.Player.instance.HasPerk(PerksEnum.Fetard) ? 10 : 0;
-            add += Personnage.Player.instance.HasPerk(PerksEnum.Geek) ? -5 : 0;
-            add += Personnage.Player.instance.HasPerk(PerksEnum.Stresse) ? -5 : 0;
+            double add = Personnage.Player.instance.HasPerk(PerksEnum.FetardPerk) ? 10 : 0;
+            add += Personnage.Player.instance.HasPerk(PerksEnum.GeekPerk) ? -5 : 0;
+            add += Personnage.Player.instance.HasPerk(PerksEnum.StressePerk) ? -5 : 0;
             return base.getProba() + add;
         }
 
         private int TempsAleatoire()
         {
             int a = 0;
-            if (Personnage.Player.instance.HasPerk(PerksEnum.Fetard))
+            if (Personnage.Player.instance.HasPerk(PerksEnum.FetardPerk))
             {
                 // J'ai hésité à mettre un random, pour finir, je gère selon l'énergie du joueur
                 if ((int) Personnage.Player.instance.GetEnergieActuelle() <= 20)

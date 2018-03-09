@@ -5,7 +5,7 @@ namespace Perks
 {
     public class IntelloPerk : Perk
     {
-        public IntelloPerk() : base((int) PerksEnum.Intello, "Intello")
+        public IntelloPerk() : base((int) PerksEnum.IntelloPerk, "Intello")
         {
         }
 

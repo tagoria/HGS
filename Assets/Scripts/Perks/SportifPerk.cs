@@ -5,7 +5,7 @@ namespace Perks
 {
     public class SportifPerk : Perk
     {
-        public SportifPerk() : base((int) PerksEnum.Sportif, "Sportif")
+        public SportifPerk() : base((int) PerksEnum.SportifPerk, "Sportif")
         {
         }
 

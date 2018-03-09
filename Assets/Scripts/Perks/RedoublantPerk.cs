@@ -5,7 +5,7 @@ namespace Perks
 {
     public class RedoublantPerk : Perk
     {
-        public RedoublantPerk() : base((int) PerksEnum.Redoublant, "Redoublant")
+        public RedoublantPerk() : base((int) PerksEnum.RedoublantPerk, "Redoublant")
         {
         }
 

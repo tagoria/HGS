@@ -5,7 +5,7 @@ namespace Perks
 {
     public class GloutonPerk : Perk
     {
-        public GloutonPerk() : base((int) PerksEnum.Glouton, "Glouton")
+        public GloutonPerk() : base((int) PerksEnum.GloutonPerk, "Glouton")
         {
         }
 
