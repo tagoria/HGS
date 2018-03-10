@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d41ee93279cc4284c3898aad82e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valeur: 50
   valeurCap: 100
 --- !u!114 &114266502640127574
 MonoBehaviour:
@@ -102,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d41ee93279cc4284c3898aad82e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valeur: 50
   valeurCap: 100
 --- !u!114 &114476424249318272
 MonoBehaviour:
@@ -116,14 +114,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barreEnergie: {fileID: 114266502640127574}
-  barreTravail: {fileID: 114144444450885722}
   barresocial: {fileID: 114710811324527832}
-  maxEnergieBase: 100
-  maxTravailBase: 100
-  maxsocialBase: 100
+  barreTravail: {fileID: 114144444450885722}
   energieDepBase: 50
-  travailDepBase: 50
+  maxEnergieBase: 100
+  maxsocialBase: 100
+  maxTravailBase: 100
+  occuppe: 0
   socialDepBase: 50
+  travailDepBase: 50
 --- !u!114 &114710811324527832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,7 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362d41ee93279cc4284c3898aad82e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valeur: 50
   valeurCap: 100
 --- !u!212 &212540914584713844
 SpriteRenderer:
@@ -216,7 +214,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 939b4c5888885e542b95bdaf2f552f1b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.16176468, g: 0.747, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
