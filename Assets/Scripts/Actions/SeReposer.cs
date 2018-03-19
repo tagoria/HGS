@@ -13,7 +13,7 @@
         // Use this for initialization
         private void Awake()
         {
-            nom = "Se Reposer";
+            nom = "Travailler";
         }
     }
 }

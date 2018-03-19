@@ -33,12 +33,14 @@ namespace Utils
             foreach (var transfo in transform.GetComponentsInChildren<Transform>())
                 if (transfo != transform)
                     Destroy(transfo.gameObject);
-            var hauteur = 0;
+            var positionX = 0;
+            var positionY = 0;
             foreach (var action in list)
             {
                 var o = Instantiate(button, transform);
-                o.transform.localPosition = new Vector2(0, hauteur);
-                hauteur -= 300;
+                o.transform.localPosition = new Vector2(positionX,positionY);
+                positionX += 850;
+               // positionY -= 25;
                 var b = o.GetComponent<Button>();
                 b.onClick.AddListener(action.Act);
                 b.GetComponentInChildren<Text>().text = action.GetNom();
