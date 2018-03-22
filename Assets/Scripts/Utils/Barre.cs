@@ -6,7 +6,7 @@ namespace Utils
     {
         private int id;
         private Vector3 maxScale;
-        private float valeur;
+        public float valeur;
         public float valeurCap;
         internal float valeurMini;
 
@@ -20,19 +20,21 @@ namespace Utils
             set
             {
                 valeur = value;
+                if (valeur > valeurCap)
+                    valeur = valeurCap;
                 ChangeSize();
             }
         }
 
         private void Awake()
         {
-            maxScale = transform.localScale;
+            maxScale = new Vector3(1,1,1);
         }
 
 
         private void ChangeSize()
         {
-            transform.localScale = new Vector3(maxScale.x * Valeur / valeurCap, maxScale.y, maxScale.z);
+            transform.localScale = new Vector3(maxScale.x * valeur / valeurCap, maxScale.y, maxScale.z);
         }
     }
 }
