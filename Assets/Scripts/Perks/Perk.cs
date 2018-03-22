@@ -8,18 +8,19 @@ namespace Perks
 {
     public abstract class Perk
     {
-        private static Assembly _asm = Assembly.GetAssembly(typeof(Perk));
+        private static readonly Assembly _asm = Assembly.GetAssembly(typeof(Perk));
         public readonly int id;
         public readonly string nom;
         private static Dictionary<PerksEnum,Type> perksType;
-        private static  Type[] emptyTypes=new List<Type>().ToArray();
-        public Perk(int id, string nom)
+        private static  Type[] emptyTypes=new Type[0];
+
+        protected Perk(int id, string nom)
         {
             this.id = id;
             this.nom = nom;
         }
 
-        public abstract void appliquer();
+        public abstract void Appliquer();
 
         public override bool Equals(object obj)
         {
@@ -30,7 +31,8 @@ namespace Perks
         {
             return 1877310944 + id.GetHashCode();
         }
-        public static void populateListe()
+
+        private static void PopulateListe()
         {
             perksType = new Dictionary<PerksEnum, Type>();
             var valeurs = Enum.GetValues(typeof(PerksEnum));
@@ -45,11 +47,11 @@ namespace Perks
             var type = "Perks."+perk;
             return _asm.GetType(type);
         } 
-        public static Perk turnIntoPerk(PerksEnum perks)
+        public static Perk TurnIntoPerk(PerksEnum perks)
         {
             if (perksType == null)
             {
-                populateListe();
+                PopulateListe();
             }
             return (Perk) perksType[perks].GetConstructor(emptyTypes).Invoke(emptyTypes);
         }

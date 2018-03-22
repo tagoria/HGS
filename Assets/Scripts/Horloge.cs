@@ -5,28 +5,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using Action = Actions.Action;
 
-public class Horloge : MonoBehaviour
+public class Horloge : MonoBehaviour ,ISauvegardable
 {
     private static int creneauActuel;
     public static Horloge instance;
     private Botin botin;
     public Text Calendrier;
     private int crenauxEcoules;
-    private Action derniereActionRealisee;
+    private Enums.Action derniereActionRealisee;
     private List<EventResult> historique;
     private int nbJoursEcoules;
 
-    private Text texteHorloge;
+    public Text TexteHorloge;
 
+    public const string keyCreneauActuel = "creneauAct";
+
+    public const string keyCreneauxEcoules = "creneauxEcoules";
+
+    public const string keyNbJoursEcoules = "joursEcoules";
+
+    public const string keyHistorique = "historique";
+
+    public const string keyDerniereActionRealisee = "derniereAction";
     // Use this for initialization
     private void Awake()
     {
-        nbJoursEcoules = 0;
-        crenauxEcoules = 0;
-        creneauActuel = 0;
         instance = this;
-        historique = new List<EventResult>();
-        historique.Add(new EventResult(Enums.Evenement.EvenementCanette,0));
+        LoadState();
     }
 
     internal bool LookForResult(EventResult eventResult, int nbCreneaux)
@@ -47,7 +52,6 @@ public class Horloge : MonoBehaviour
     private void Start()
     {
         botin = FindObjectOfType<Botin>();
-        texteHorloge = GetComponent<Text>();
     }
 
     public void addToHistorique(EventResult eventResult)
@@ -55,14 +59,14 @@ public class Horloge : MonoBehaviour
         historique.Add(eventResult);
     }
 
-    public Action getDerniereActionRealisee()
+    public Enums.Action getDerniereActionRealisee()
     {
         return derniereActionRealisee;
     }
 
     public void setDerniereActionRealisee(Action action)
     {
-        derniereActionRealisee = action;
+        derniereActionRealisee = action.GetId();
     }
 
     // Update is called once per frame
@@ -112,7 +116,7 @@ public class Horloge : MonoBehaviour
 
         creneauActuel++;
         creneauActuel = creneauActuel % 12;
-        texteHorloge.text = creneauActuel * 2 + ":00";
+        TexteHorloge.text = creneauActuel * 2 + ":00";
         Personnage.Player.instance.AffecterStatus(1);
         botin.ChangerDeCreneau();
     }
@@ -122,5 +126,47 @@ public class Horloge : MonoBehaviour
         var creneauxLeft = daysToWait * 12;
         creneauxLeft += -creneauActuel + creneauWanted;
         return creneauxLeft;
+    }
+
+    public void SaveState()
+    {
+        PlayerPrefs.SetInt(keyCreneauActuel,creneauActuel);
+        PlayerPrefs.SetInt(keyDerniereActionRealisee,(int) derniereActionRealisee);
+        PlayerPrefs.SetInt(keyNbJoursEcoules,nbJoursEcoules);
+        PlayerPrefs.SetInt(keyCreneauxEcoules,crenauxEcoules);
+        string histString = JsonUtility.ToJson(historique);
+        PlayerPrefs.SetString(keyHistorique,histString);
+    }
+
+    public void LoadState()
+    {
+        if (PlayerPrefs.HasKey(keyCreneauxEcoules))
+        {
+            historique = new List<EventResult>();
+            historique.Add(new EventResult(Enums.Evenement.EvenementCanette,0));
+            historique.Add(new EventResult(Enums.Evenement.EvenementCanette,0));
+            creneauActuel = PlayerPrefs.GetInt(keyCreneauActuel);
+            derniereActionRealisee = (Enums.Action) PlayerPrefs.GetInt(keyDerniereActionRealisee);
+            nbJoursEcoules = PlayerPrefs.GetInt(keyNbJoursEcoules);
+            crenauxEcoules = PlayerPrefs.GetInt(keyCreneauxEcoules);
+            TexteHorloge.text = creneauActuel * 2 + ":00";
+            Calendrier.text = nbJoursEcoules.ToString();
+        }
+        else
+        {
+            nbJoursEcoules = 0;
+            crenauxEcoules = 0;
+            creneauActuel = 0;
+            historique = new List<EventResult>();
+            historique.Add(new EventResult(Enums.Evenement.EvenementCanette,0));
+
+    }
+    
+    
+}
+
+    private void OnApplicationQuit()
+    {
+        SaveState();
     }
 }

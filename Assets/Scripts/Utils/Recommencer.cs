@@ -8,7 +8,7 @@ namespace Utils
     {
         public void recommencer()
         {
-            SceneManager.LoadScene((int) NumeroSceneEnum.CreationPerso, LoadSceneMode.Single);
+            SceneManager.LoadScene((int) NumeroSceneEnum.EcranTitre, LoadSceneMode.Single);
         }
     }
 }

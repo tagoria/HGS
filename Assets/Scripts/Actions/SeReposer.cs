@@ -13,6 +13,7 @@
         // Use this for initialization
         private void Awake()
         {
+            id = Enums.Action.SeReposer;
             nom = "Travailler";
         }
     }

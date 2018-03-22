@@ -78,7 +78,7 @@ namespace Personnage
             {
                 if (perkNum.Length != 0)
                 {
-                    listePerk.Add(int.Parse( perkNum),Perk.turnIntoPerk((PerksEnum) int.Parse(perkNum)));
+                    listePerk.Add(int.Parse( perkNum),Perk.TurnIntoPerk((PerksEnum) int.Parse(perkNum)));
                 }
             }
             energieActuelle = PlayerPrefs.GetFloat(energieActuelleKey);
@@ -100,10 +100,7 @@ namespace Personnage
                 this.LoadState();
             }
         }
-        private void OnApplicationQuit()
-        {
-            SaveState();
-        }
+        
 
         // Use this for initialization
         private void Start()
@@ -170,7 +167,7 @@ namespace Personnage
             foreach (var perk in listePerk.Values)
             {
                 print(perk.id);
-                perk.appliquer();
+                perk.Appliquer();
             }
 
             energieActuelle = energieDep;
@@ -277,5 +274,9 @@ namespace Personnage
             this.nom = nom;
         }
 
+        private void OnApplicationQuit()
+        {
+            SaveState();
+        }
     }
 }

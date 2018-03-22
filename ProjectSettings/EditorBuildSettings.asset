@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EcranPrincipal.unity
     guid: b1f37b1fb972b5341b90f3e59802d2b1
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/346061e0039bb2e40a9b1f27f977896b
+    guid: 346061e0039bb2e40a9b1f27f977896b
   - enabled: 1
     path: Assets/Scenes/EcranTitre.unity
-    guid: 346061e0039bb2e40a9b1f27f977896b
+    guid: 9b8a5558b230e5b42b44599efe302a68

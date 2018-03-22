@@ -3,6 +3,7 @@ using Actions;
 using Enums;
 using Events.Conditions;
 using UnityEngine;
+using Action = Enums.Action;
 
 namespace Events
 {
@@ -10,7 +11,7 @@ namespace Events
     {
         private static readonly List<Condition> conditions = new List<Condition>
         {
-            new ConditionDerniereAction(typeof(Travailler)),
+            new ConditionDerniereAction(Action.Travailler),
             new ConditionJoueurOccupe(false)
         };
 

@@ -6,9 +6,9 @@ namespace Events.Conditions
 {
     public class ConditionDerniereAction : EvenementAbstract.Condition
     {
-        private readonly Type action;
+        private readonly Enums.Action action;
 
-        public ConditionDerniereAction(Type action)
+        public ConditionDerniereAction(Enums.Action action)
         {
             this.action = action;
         }
@@ -16,12 +16,7 @@ namespace Events.Conditions
         public override bool verify()
         {
             var horloge = Object.FindObjectOfType<Horloge>();
-            if (horloge.getDerniereActionRealisee() != null)
-            {
-            }
-
-            return horloge.getDerniereActionRealisee() != null &&
-                   horloge.getDerniereActionRealisee().GetType().Equals(action);
+            return horloge.getDerniereActionRealisee() == action;
         }
         public override bool Equals(object obj)
         {
@@ -29,17 +24,14 @@ namespace Events.Conditions
             {
                 return false;
             }
-            else
-            {
-                ConditionDerniereAction condition = (ConditionDerniereAction) obj;
-                return action == condition.action;
-            }
+            ConditionDerniereAction condition = (ConditionDerniereAction) obj;
+            return action == condition.action;
 
         }
 
         public override int GetHashCode()
         {
-            return -1387187753 + EqualityComparer<Type>.Default.GetHashCode(action);
+            return -1387187753 + (int)action;
         }
         public override string ToString()
         {

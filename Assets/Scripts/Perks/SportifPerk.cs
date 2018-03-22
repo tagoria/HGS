@@ -9,7 +9,7 @@ namespace Perks
         {
         }
 
-        public override void appliquer()
+        public override void Appliquer()
         {
 
         }

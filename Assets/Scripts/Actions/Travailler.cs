@@ -4,6 +4,7 @@
     {
         private void Awake()
         {
+            id = Enums.Action.Travailler;
             nom = "Travailler";
         }
 
