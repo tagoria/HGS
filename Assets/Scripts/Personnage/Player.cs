@@ -5,6 +5,7 @@ using Perks;
 using Status;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Utils;
 
 namespace Personnage
@@ -15,6 +16,8 @@ namespace Personnage
         public Barre barreEnergie;
         public Barre barresocial;
         public Barre barreTravail;
+        public Text NomJoueur;
+        //NomJoueur= Personnage.CreationPersonnage.getName();
         private float energieActuelle;
         internal static float energieDep;
         public float energieDepBase;

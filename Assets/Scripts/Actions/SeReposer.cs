@@ -14,7 +14,7 @@
         private void Awake()
         {
             id = Enums.Action.SeReposer;
-            nom = "Travailler";
+            nom = "Se reposer";
         }
     }
 }

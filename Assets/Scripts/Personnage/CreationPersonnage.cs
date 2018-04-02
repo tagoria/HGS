@@ -92,6 +92,12 @@ namespace Personnage
         public void SetName()
         {
             nom = GameObject.FindGameObjectWithTag("inputFieldPlayerName").GetComponentInChildren<InputField>().text;
+            //NomDuJoueur.LeNom.NomJoueur = nom;
+        }
+
+        public string getName()
+        {
+            return nom;
         }
     }
 }

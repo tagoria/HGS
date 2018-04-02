@@ -8,6 +8,7 @@ using Action = Actions.Action;
 public class Horloge : MonoBehaviour ,ISauvegardable
 {
     private static int creneauActuel;
+    private static int creneauPrecedent;
     public static Horloge instance;
     private Botin botin;
     public Text Calendrier;
@@ -116,7 +117,8 @@ public class Horloge : MonoBehaviour ,ISauvegardable
 
         creneauActuel++;
         creneauActuel = creneauActuel % 12;
-        TexteHorloge.text = creneauActuel * 2 + ":00";
+        AnimationHorloge();
+        //TexteHorloge.text = creneauActuel * 2 + ":00";
         Personnage.Player.instance.AffecterStatus(1);
         botin.ChangerDeCreneau();
     }
@@ -164,6 +166,14 @@ public class Horloge : MonoBehaviour ,ISauvegardable
     
     
 }
+
+    public void AnimationHorloge()
+    {
+        for(int i=0; i<59;++i)
+        {
+            TexteHorloge.text = creneauActuel * 2 + ":"+i;
+        }
+    }
 
     private void OnApplicationQuit()
     {
